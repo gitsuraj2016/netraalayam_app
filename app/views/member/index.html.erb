@@ -1,0 +1,60 @@
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+
+    <%= render 'layouts/header' %>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Dashboard
+          <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li class="active">
+            <a href="#">
+              <i class="fa fa-home"></i>
+              Home Page</a>
+            </li>
+          </ol>
+        </section>
+        <section class="content">
+          <div class="col-md-6">
+            <div class="box">
+              <div class="box-header with-border">
+                <h3 class="box-title">Roles (<%= @users.count %>)</h3>
+                <%= link_to 'New Create', member_create_path , { class: "btn btn-primary newAddBtn"}%>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <table class="table table-bordered table-hover">
+                  <tr>
+                    <th>Name</th>
+                    
+                    <th>
+                      <i class="ion ion-edit"></i>
+                    </th>
+                    <th>
+                      <i class="ion ion-trash-b"></i>
+                    </th>
+                  </tr>
+                  <% @users.each do |user| %>
+                  <tr>
+                    <td><%= user.name %></td>
+
+                    <td><%#= link_to "", edit_role_path(role), { class: "ion ion-edit"} %></td>
+                    <td>
+                      
+                    </td>
+                  </tr>
+                  <% end %>
+                </table>
+              </div>
+            </div>
+            <!-- /.box -->
+          </div>
+          <br>
+        </section>
+      </div>
+    </div>
+  </body>

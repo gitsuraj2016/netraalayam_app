@@ -1,14 +1,53 @@
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
-  <%= render 'layouts/header' %>
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Home Page
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-home"></i> Home Page</a></li>
-        <li class="active">Edit Profile</li>
-      </ol>
-    </section>
+  <div class="wrapper">
+
+    <%= render 'layouts/header' %>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Dashboard
+          <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li class="active">
+            <a href="#">
+              <i class="fa fa-home"></i>
+              Home Page</a>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <!-- Small boxes (Stat box) -->
+       <%= form_for :abc, url: "home/create_user" do |form| %>
+  <%= form.text_field :name %>
+  <%= form.password_field :password %>
+  <%= form.password_field :password_confirmation %>
+  <%= form.submit  %>
+<% end  %>
+        <!-- /.row -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <%= render 'layouts/footer' %>
+    <script>
+      $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <script>
+      $(function () {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false
+        });
+      });
+    </script>
+  </body>

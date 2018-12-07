@@ -15,10 +15,28 @@
     <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
       <span class="sr-only">Toggle navigation</span>
     </a>
+       <div class="dropdown" style="">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><%= current_user.name %>
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="javascript:;"> Profile</a></li>
+                    <li>
+                      <a href="javascript:;">
+                        <span class="badge bg-red pull-right">50%</span>
+                        <span>Settings</span>
+                      </a>
+                    </li>
+                    <li><a href="javascript:;">Help</a></li>
+                    <li><a href="login.html">
+                      <%= link_to destroy_user_session_path, method: :delete  do %>
+                    <i class="fa fa-sign-out pull-right"></i> Log Out
+                    <% end %></a></li>
+                  </ul>
+</div>
     <!-- <ul class="nav navbar-nav navbar-right">
                 <li >
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                    <%#= image_tag("img.jpg", class: "img-circle") %><%#= current_user.name %>
+                    <%#= image_tag("img.jpg", class: "img-circle") %>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -78,21 +96,21 @@
         </a>
       </li>
       <li>
-        <a href="<%#= past_orders_path %>">
-          <i class="fa fa-history"></i>
-          <span>Past Orders</span>
+        <a href="<%= stores_path %>">
+          <i class="fa fa-building"></i>
+          <span>Add Store</span>
         </a>
       </li>
       <li>
-        <a href=" <%#= new_item_path %>">
+        <a href=" <%= member_index_path %>">
           <i class="fa fa-plus"></i>
-          <span>Add Item</span>
+          <span>Add Mamber</span>
         </a>
       </li>
       <li>
-        <a href="<%#= new_member_path %>">
-          <i class="fa fa-user-plus"></i>
-          <span>Add Member</span>
+        <a href="<%= roles_path %>">
+          <i class="fa fa-users"></i>
+          <span>Add Role</span>
         </a>
       </li>
     </ul>

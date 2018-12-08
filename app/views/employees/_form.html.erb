@@ -1,0 +1,46 @@
+<%= form_with(model: employee, local: true) do |form| %>
+  <% if employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+      <% employee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <div class="box-body">
+    <div class="form-group">
+
+    <%= form.label :emp_id %>
+    <%= form.text_field :emp_id, class: "form-control" , :value => @lastId %>
+
+    <%= form.label :name %>
+    <%= form.text_field :name , class: "form-control"%>
+
+    <%= form.label :mobile %>
+    <%= form.text_field :mobile , class: "form-control"%>
+
+    <%= form.label :email %>
+    <%= form.text_field :email , class: "form-control" %>
+
+    <%= form.label :optometrist %>
+    <%= form.check_box :optometrist , class: "form-check"%>
+
+    <%= form.label :hto %>
+    <%= form.check_box :hto , class: "form-check"%>
+
+    <%= form.label :manager %>
+    <%= form.check_box :manager , class: "form-check"%>
+
+    <%= form.label :active %>
+    <%= form.check_box :active , class: "form-check"%>
+
+  <div class="box-footer">
+    <%= form.submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
+</div>
+</div>

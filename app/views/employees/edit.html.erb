@@ -6,10 +6,10 @@
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
-        <h1>
+       <!--  <h1>
           Dashboard
           <small>Control panel</small>
-        </h1>
+        </h1> -->
         <ol class="breadcrumb">
           <li class="active">
             <a href="#">
@@ -21,15 +21,16 @@
         <section class="content">
           <div class="row">
             <!-- left column -->
-            <div class="col-md-6">
+            <div class="col-md-8">
               <!-- general form elements -->
               <div class="box box-header">
                 <div class="box-header with-border">
-                  <h3 class="box-title">New User</h3>
+                <h3 class="box-title">Edit Employee</h3>
                 </div>
 
-                <%= render 'user_form' %>
+                <%= render 'form', employee: @employee %>
 
+                <%#= link_to 'Show', @role %> 
                 <%#= link_to 'Back', roles_path %>
               </div>
             </div>
@@ -38,12 +39,3 @@
       </div>
     </div>
   </body>
-
-
-
-
-
-
-
-
-

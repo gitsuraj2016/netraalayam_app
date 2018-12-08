@@ -1,0 +1,76 @@
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+
+    <%= render 'layouts/header' %>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <!-- <h1>
+          Dashboard
+          <small>Control panel</small>
+        </h1> -->
+        <ol class="breadcrumb">
+          <li class="active">
+            <a href="#">
+              <i class="fa fa-home"></i>
+              Home Page</a>
+            </li>
+          </ol>
+        </section>
+        <section class="content">
+          <div class="col-md-12">
+            <div class="box">
+              <div class="box-header with-border">
+                <h3 class="box-title">Total Employees (<%= @employees.count %>)</h3>
+                <%= link_to 'New Employee', new_employee_path , { class: "btn btn-primary newAddBtn"}%>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <table class="table table-bordered table-hover">
+                  <tr>
+                     <th>Emp</th>
+                     <th>Name</th>
+                     <th>Mobile</th>
+                     <th>Email</th>
+                     <th>Optometrist</th>
+                     <th>Hto</th>
+                     <th>Manager</th>
+                     <th>Active</th>
+                    
+                    <th>
+                      <i class="ion ion-edit"></i>
+                    </th>
+                    <th>
+                      <i class="ion ion-trash-b"></i>
+                    </th>
+                  </tr>
+                  <% @employees.each do |employee| %>
+                  <tr>
+                    <td><%= employee.emp_id %></td>
+                    <td><%= employee.name %></td>
+                    <td><%= employee.mobile %></td>
+                    <td><%= employee.email %></td>
+                    <td><%= employee.optometrist %></td>
+                    <td><%= employee.hto %></td>
+                    <td><%= employee.manager %></td>
+                    <td><%= employee.active %></td>
+                    <td><%= link_to "", edit_employee_path(employee), { class: "ion ion-edit"} %></td>
+                    <td>
+                      <%= link_to employee, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                      <i class="ion ion-trash-b"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <% end %>
+                </table>
+              </div>
+            </div>
+            <!-- /.box -->
+          </div>
+          <br>
+        </section>
+      </div>
+    </div>
+  </body>
+

@@ -30,22 +30,26 @@
                 <table class="table table-bordered table-hover">
                   <tr>
                     <th>Name</th>
+                    <th>Store Name</th>
+                    <th>Role</th>
                     
-                    <th>
+                    <!-- <th>
                       <i class="ion ion-edit"></i>
                     </th>
                     <th>
                       <i class="ion ion-trash-b"></i>
-                    </th>
+                    </th> -->
                   </tr>
                   <% @users.each do |user| %>
                   <tr>
                     <td><%= user.name %></td>
+                    <td><%= user.store.name %></td>
+                    <td><%= user.role.name %></td>
 
-                    <td><%#= link_to "", edit_role_path(role), { class: "ion ion-edit"} %></td>
+                   <!--  <td><%#= link_to "", edit_user_path(role), { class: "ion ion-edit"} %></td>
                     <td>
                       
-                    </td>
+                    </td> -->
                   </tr>
                   <% end %>
                 </table>

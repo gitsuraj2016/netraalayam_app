@@ -107,18 +107,21 @@
           <span>Add Store</span>
         </a>
       </li>
+      <% if current_user.role.name == "admin" %>
       <li>
         <a href=" <%= member_index_path %>">
           <i class="fa fa-plus"></i>
           <span>Add Mamber</span>
         </a>
       </li>
+
       <li>
         <a href="<%= roles_path %>">
           <i class="fa fa-user"></i>
           <span>Add Role</span>
         </a>
       </li>
+       <% end %>
     </ul>
   </section>
   <!-- /.sidebar -->

@@ -1,0 +1,96 @@
+<%= form_with(model: len, local: true) do |form| %>
+  <% if len.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(len.errors.count, "error") %> prohibited this len from being saved:</h2>
+
+      <ul>
+      <% len.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="box-body">
+  <div class="form-group">
+  <div class="field">
+    <%= form.label :product_name %>
+    <%= form.text_field :product_name , class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :brand_name %>
+    <%= form.text_field :brand_name , class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :lens_type %>
+    <%= form.text_field :lens_type , class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :coatings1 %>
+    <%= form.text_field :coatings1 , class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :coatings2 %>
+    <%= form.text_field :coatings2, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :coatings3 %>
+    <%= form.text_field :coatings3 , class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :coatings4 %>
+    <%= form.text_field :coatings4 , class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :coatings5 %>
+    <%= form.text_field :coatings5 , class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :material %>
+    <%= form.text_field :material , class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :power_range %>
+    <%= form.text_field :power_range , class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :no_s %>
+    <%= form.text_field :no_s , class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :MRP %>
+    <%= form.text_field :MRP , class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :NRP %>
+    <%= form.text_field :NRP , class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :discount %>
+    <%= form.text_field :discount ,class: "form-control"%>
+  </div>
+
+  <div class="field">
+   <label>Store</label>
+          <%= form.select :store_id, options_for_select(@stores.map{ |c| [c.name, c.id] },:selected => @len.store_id) %>
+  </div>
+
+      <div class="box-footer">
+           <%= form.submit "Submit", class: "btn btn-primary" %>
+        </div>
+       </div>
+  </div>
+<% end %>

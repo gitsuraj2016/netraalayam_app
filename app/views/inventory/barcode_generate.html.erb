@@ -1,0 +1,86 @@
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+
+    <%= render 'layouts/header' %>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Dashboard
+          <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li class="active">
+            <a href="#">
+              <i class="fa fa-home"></i>
+              Home Page</a>
+            </li>
+          </ol>
+        </section>
+        <section class="content">
+          <div class="col-md-6">
+            <div class="box">
+              
+              <!-- /.box-header -->
+              <div class="box-body">
+                <H1>BarCode Generator</H1>
+                    <%= form_for :abc, url: "create_user" do |f| %>
+                      <div class="box-body">
+                        
+                        <div class="form-group">
+                          <label>Product Name</label>
+                          <%= f.select :name, options_for_select(@frames.map{ |c| [c.product_name, c.id] }) %>
+                          <%#= f.text_field :name, autocomplete: "off", placeholder: "Product Name", class: "form-control", required: true  %>
+                        </div>
+                        <div class="form-group">
+                          <label>Product ID</label>
+                          <%= f.text_field :email, autocomplete: "off", placeholder: "Select Product ID", class: "form-control", required: true  %>
+                        </div>
+                        <div class="form-group">
+                          <label>Rate </label>
+                          <%= f.text_field :rate, autocomplete: "off", placeholder: "Enter Rate", class: "form-control" %>
+                          <% if @minimum_password_length %>
+                          <br />
+                          <em><%= @minimum_password_length %> characters minimum</em>
+                          <% end %>
+                        </div>
+                        <div class="form-group">
+                          <label>BarCodes Quantity</label>
+                          <%= f.text_field :quantity, autocomplete: "off", placeholder: "Enter Barcode Quantity", class: "form-control" %>
+                        </div>
+                      </div>
+                      <!-- /.box-body -->
+                      <div class="box-footer">
+                        <%= f.submit "Submit", class: "btn btn-primary"%>
+                        <div class="pull-right">
+                          <%#= link_to 'Delete account', current_user, method: :delete, data: { confirm: 'Are you sure? This action can not be reversed.' }, class: "btn btn-danger" %>
+                        </div>
+                      </div>
+
+
+
+                      </div>
+                      </div>
+                      <% end  %>
+              </div>
+              <table style="margin: 20px; border-width: 2; border: 1px solid black;">
+<tr><td style="text-align: center">Item: P001</td></tr>
+<tr><td><%= raw @barcode_for_html.to_html %></td></tr>
+<tr><td style="text-align: center;"> Price: 200</td></tr>
+            </div>
+            <!-- /.box -->
+          </div>
+          <br>
+        </section>
+      </div>
+    </div>
+  </body>
+
+<style type="text/css">
+
+table.barby-barcode { border-spacing: 0; }
+tr.barby-row {}
+td.barby-cell { height: 50px; }
+td.barby-cell.on { background: #000; }
+</style>

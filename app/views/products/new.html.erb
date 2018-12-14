@@ -1,0 +1,44 @@
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+
+    <%= render 'layouts/header' %>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Dashboard
+          <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li class="active">
+            <a href="#">
+              <i class="fa fa-home"></i>
+              Home Page</a>
+            </li>
+          </ol>
+        </section>
+        <section class="content">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <div class="box box-header">
+                <div class="box-header with-border">
+                  <h3 class="box-title">New Product</h3>
+                </div>
+
+                <%= render 'form', product: @product %>
+
+                <%#= link_to 'Back', roles_path %>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+
+
+<%#= render 'form', product: @product %>
+<%#= link_to 'Back', products_path %>

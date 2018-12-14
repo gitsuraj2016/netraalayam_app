@@ -86,39 +86,45 @@
       <li>
         <a href="<%= root_url %>">
           <i class="fa fa-home"></i>
-          <span>Home Page</span>
+          <span>DashBoard</span>
         </a>
       </li>
       <li>
         <a href="<%#= items_path %>">
           <i class="fa fa-search"></i>
-          <span>Check Inventory</span>
+          <span>Manage Inventory</span>
+        </a>
+      </li>
+      <li>
+        <a href="<%= products_path %>">
+          <i class="fa fa-search"></i>
+          <span>Manage Product</span>
         </a>
       </li>
       <li>
         <a href="<%= employees_path %>">
           <i class="fa fa-users"></i>
-          <span>Add Employee</span>
+          <span>Manage Employee</span>
         </a>
       </li>
       <li>
         <a href="<%= stores_path %>">
           <i class="fa fa-building"></i>
-          <span>Add Store</span>
+          <span>Manage Store</span>
         </a>
       </li>
       <% if current_user.role.name == "admin" %>
       <li>
         <a href=" <%= member_index_path %>">
           <i class="fa fa-plus"></i>
-          <span>Add Mamber</span>
+          <span>Manage Mamber</span>
         </a>
       </li>
 
       <li>
         <a href="<%= roles_path %>">
           <i class="fa fa-user"></i>
-          <span>Add Role</span>
+          <span>Manage Role</span>
         </a>
       </li>
        <% end %>

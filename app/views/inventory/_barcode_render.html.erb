@@ -1,0 +1,16 @@
+ <divc id="bcodeDiv">
+ <% if @barcode_for_html.present? %>
+ <table style="margin: 20px;border: 1px solid black;">
+    <tr><td></td><td></td><td style="padding-left: 80px;"><%= @pname %></td></tr>
+    <tr><td style="padding-left: 10px;"><%= raw @barcode_for_html.to_html if @barcode_for_html.present?%></td><td></td><td style="padding-left: 80px;">MRP: <%= @prate %></td></tr>
+    <tr><td style="text-align: center;"><%= @pid %> </td><td></td><td style="padding-left: 80px;">Net: <%= @prate %></td></tr>
+  </table>
+  <% end %>
+  </div>
+  <style type="text/css">
+
+table.barby-barcode { border-spacing: 0; }
+tr.barby-row {}
+td.barby-cell { height: 50px; }
+td.barby-cell.on { background: #000; }
+</style>

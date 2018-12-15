@@ -14,4 +14,5 @@
 //= require rails-ujs
 //= require bootstrap
 //= require activestorage
+//= require datepicker
 //= require_tree .

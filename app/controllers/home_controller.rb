@@ -1,6 +1,10 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!
   def index
+     @items = 10
+     @invet = 20
+     @xyz = 30
+     @abc = 40
   end
 
   # def create_user

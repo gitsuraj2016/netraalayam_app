@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'customer/index'
   resources :lens
   
   resources :frames
@@ -18,6 +19,13 @@ Rails.application.routes.draw do
 
   get 'inventory/index'
   get 'inventory/barcode_generate'
+  post 'inventory/generate_barcode'
+
+  resources :invoices, except: [:edit, :update, :destroy] do
+    collection do
+      match 'search' => 'invoices#search', via: [:get, :post], as: :search
+    end
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

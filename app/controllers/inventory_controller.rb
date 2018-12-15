@@ -14,11 +14,30 @@ class InventoryController < ApplicationController
   end
 
   def barcode_generate
+
+
   	  @frames = Frame.all
-  	  @barcode = Barby::Code128B.new('000000000000')
-      @barcode_for_html = Barby::HtmlOutputter.new(@barcode)
+      @barcode_for_html = '';
+  	  # @barcode = Barby::Code128B.new('000000000000')
+     #  @barcode_for_html = Barby::HtmlOutputter.new(@barcode)
       # bbcode
   end
+  def generate_barcode
+
+      
+      @pid = params[:BarCode][:pid]
+      @pname  = params[:BarCode][:pname]
+      @prate = params[:BarCode][:prate]
+      @pqt = params[:BarCode][:quantity]
+
+      @barcode = Barby::Code128B.new(@pid)
+      @barcode_for_html = Barby::HtmlOutputter.new(@barcode)
+
+     respond_to do |format|  
+            format.js
+     end 
+  end
+
   def bbcode
   	   if File.directory?("#{Rails.root}/public/barcodes") == false
 	      system 'mkdir', '-p', "#{Rails.root}/public/barcodes"

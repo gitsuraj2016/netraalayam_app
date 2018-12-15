@@ -32,6 +32,7 @@ gem 'bootstrap', '~> 4.0.0'
 # gem 'mini_magick', '~> 4.8'
 gem 'barby'
 gem 'chunky_png', '~> 1.3', '>= 1.3.5'
+gem 'simple_form'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

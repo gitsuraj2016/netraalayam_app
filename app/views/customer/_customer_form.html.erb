@@ -1,0 +1,271 @@
+<%= form_for :Customer, url: "create_customer" do |f| %>
+<table  class="table table-bordered">
+<div class="box-body">
+  <!-- first row -->
+  <tr><td>
+  <div class="form-group">
+    <label>Name</label>
+    <%= f.text_field :name, autocomplete: "off", placeholder: "Enter Name", class: "form-control", required: true  %>
+  </div>
+  </td><td>
+  <div class="form-group" >
+    <label>Mobile</label>
+    <%= f.text_field :mobile, autocomplete: "off", placeholder: "Enter Mobile", class: "form-control", required: true  %>
+  </div>
+  </td>
+  <td>
+  <div class="form-group">
+    <label>Profession</label>
+    <%= f.text_field :profession, autocomplete: "off", placeholder: "Enter Profession", class: "form-control", required: true  %>
+  </div>
+  </td>
+  <td>
+  <div class="form-group">
+    <label>E-mail</label>
+    <%= f.text_field :email, autocomplete: "off", placeholder: "Enter Email", class: "form-control", required: true  %>
+  </div>
+  </td></tr>
+  <tr><td>
+  <!-- second row -->
+  <tr><td>
+  <div class="form-group">
+    <label>Address</label>
+    <%= f.text_area :address, autocomplete: "off", placeholder: "Enter Address", class: "form-control" %>
+  </div>
+  <td>
+  <div class="form-group">
+    <label>Select Gender</label>
+    <%#= f.password_field :gender, autocomplete: "off", placeholder: "Enter Password Again", class: "form-control" %>
+    <%= select_tag(:gender, options_for_select([["Male",1],["Female",2],["Kid",3]], params[:gender] ), class:"form-control") %>
+  </div>
+</div>
+</td>
+<td>
+<div class="form-group">
+    <label>Anniversary</label>
+    <%= f.text_field :anniversary_date, autocomplete: "off", placeholder: "Enter Anniversary", class: "form-control" %>
+  </div>
+  <!-- <div class="form-group">
+    <label>Age</label>
+    <%= f.text_field :age, autocomplete: "off", placeholder: "Enter age", class: "form-control" %>
+  </div> -->
+  </td>
+  <td>
+  <div class="form-group">
+    <label>Date of Birth</label>
+    <%= f.text_field :dob, autocomplete: "off", placeholder: "Date of Birth", class: "form-control" %>
+  </div>
+</div>
+</td></tr>
+<!-- Third row  start-->
+<tr><td>
+  
+  <div class="form-group">
+    <label>Ocular History</label>
+    <%= f.text_area :ocular_history, autocomplete: "off", placeholder: "Ocular History", class: "form-control" %>
+  </div>
+  </td>
+  <td>
+  <div class="form-group">
+    <label>Major Complaint</label>
+    <%= f.text_field :major_complaint, autocomplete: "off", placeholder: "Major Complaint", class: "form-control" %>
+  </div>
+</div>
+</td>
+<td>
+  <div class="form-group">
+    <label>Current medication</label>
+    <%= f.text_field :current_medication, autocomplete: "off", placeholder: "Current medication", class: "form-control" %>
+  </div>
+  </td>
+  <td>
+  <div class="form-group">
+    <label>Medical History</label>
+    <%= f.text_field :medical_history, autocomplete: "off", placeholder: "Medical History", class: "form-control" %>
+  </div>
+</div>
+</td></tr>
+<!-- Fourth row -->
+<!-- <tr><td>
+  <div class="form-group">
+    <label>Current medication</label>
+    <%= f.text_field :current_medication, autocomplete: "off", placeholder: "Current medication", class: "form-control" %>
+  </div>
+  </td></tr> -->
+<!-- /.box-body -->
+<table  class="table table-bordered">
+ <tr style="text-align: center; font-weight: 600;"><td>Old Prescription Spectacle</td></tr>
+  <!-- <div class="box-body"> -->
+  <!-- first row -->
+  <tr>
+  <table>
+    <tr><td>Right Eyes</td></tr>
+    <tr><th>SPH</th><th>CYL</th><th>AXIS</th></tr>
+    <tr>
+      <td><%= f.text_field :old_rgt_sph_1, autocomplete: "off", class: "form-control" %></td>
+      <td><%= f.text_field :old_rgt_cyl_1, autocomplete: "off", class: "form-control" %></td>
+      <td><%= f.text_field :old_rgt_axix_1, autocomplete: "off", class: "form-control" %></td></tr>
+    <tr>
+      <td><%= f.text_field :old_rgt_sph_2, autocomplete: "off",class: "form-control" %></td>
+      <td><%= f.text_field :old_rgt_cyl_2, autocomplete: "off",class: "form-control" %></td>
+      <td><%= f.text_field :old_rgt_axix_2, autocomplete: "off", class: "form-control" %></td>
+    </tr>
+  </table>
+  </tr>
+  <tr>
+  <table>
+    <tr><td>Left Eyes</td></tr>
+    <tr><th>SPH</th><th>CYL</th><th>AXIS</th></tr>
+    <tr>
+    <td><%= f.text_field :old_lft_sph_1, autocomplete: "off", class: "form-control" %></td>
+    <td><%= f.text_field :old_lft_cyl_1, autocomplete: "off", class: "form-control" %></td>
+    <td><%= f.text_field :old_lft_axix_1, autocomplete: "off", class: "form-control" %></td></tr>
+    <tr>
+    <td><%= f.text_field :old_lft_sph_2, autocomplete: "off",class: "form-control" %></td>
+    <td><%= f.text_field :old_lft_cyl_2, autocomplete: "off",class: "form-control" %></td>
+    <td><%= f.text_field :old_lft_axix_2, autocomplete: "off", class: "form-control" %></td>
+    </tr>
+  </table>
+  </tr>
+ 
+</table>
+
+<table  class="table table-bordered">
+ <tr style="text-align: center; font-weight: 600;"><td>New Prescription Spectacle</td></tr>
+  <!-- <div class="box-body"> -->
+  <!-- first row -->
+  <tr>
+  <table>
+     <tr><td>Right Eyes</td></tr>
+    <tr><th>SPH</th><th>CYL</th><th>AXIS</th></tr>
+    <tr>
+      <td><%= f.text_field :new_rgt_sph_1, autocomplete: "off", class: "form-control" %></td>
+      <td><%= f.text_field :new_rgt_cyl_1, autocomplete: "off", class: "form-control" %></td>
+      <td><%= f.text_field :new_rgt_axix_1, autocomplete: "off", class: "form-control" %></td></tr>
+    <tr>
+      <td><%= f.text_field :new_rgt_sph_2, autocomplete: "off",class: "form-control" %></td>
+      <td><%= f.text_field :new_rgt_cyl_2, autocomplete: "off",class: "form-control" %></td>
+      <td><%= f.text_field :new_rgt_axix_2, autocomplete: "off", class: "form-control" %></td>
+    </tr>
+  </table>
+  </tr>
+  <tr>
+  <table>
+    <tr><td>Left Eyes</td></tr>
+    <tr><th>SPH</th><th>CYL</th><th>AXIS</th></tr>
+    <tr>
+    <td><%= f.text_field :new_lft_sph_1, autocomplete: "off", class: "form-control" %></td>
+    <td><%= f.text_field :new_lft_cyl_1, autocomplete: "off", class: "form-control" %></td>
+    <td><%= f.text_field :new_lft_axix_1, autocomplete: "off", class: "form-control" %></td></tr>
+    <tr>
+    <td><%= f.text_field :new_lft_sph_2, autocomplete: "off",class: "form-control" %></td>
+    <td><%= f.text_field :new_lft_cyl_2, autocomplete: "off",class: "form-control" %></td>
+    <td><%= f.text_field :new_lft_axix_2, autocomplete: "off", class: "form-control" %></td></tr>
+  </table>
+  </tr>
+  <!-- <td>Left Eyes</td></tr> -->
+  
+  <!-- </div> -->
+</table>
+<!-- Details of Progressive -->
+<table  class="table table-bordered">
+ <tr><td>Details of Progressive</td></tr>
+  <!-- <div class="box-body"> -->
+  <!-- first row -->
+  <tr><td>
+  <div class="form-group">
+    <label>RE PD:</label>
+    <%= f.text_field :re_pd, autocomplete: "off", placeholder: "RE PD", class: "form-control" %>
+  </div>
+  </td><td>
+  <div class="form-group" >
+    <label>LE PD:</label>
+    <%= f.text_field :le_pd, autocomplete: "off", placeholder: "LE PD", class: "form-control" %>
+  </div>
+  </td>
+  <td>
+  <div class="form-group">
+    <label>BEFH:</label>
+    <%= f.text_field :befh, autocomplete: "off", placeholder: "BEFH", class: "form-control" %>
+  </div>
+  </td>
+  <td>
+  <div class="form-group">
+    <label>ED:</label>
+    <%= f.text_field :ed, autocomplete: "off", placeholder: "ED", class: "form-control"  %>
+  </div>
+  </td></tr>
+  <tr><td>
+  <!-- <td>Left Eyes</td></tr> -->
+  
+  <!-- </div> -->
+</table>
+
+
+
+
+
+<table class="table table-bordered">
+    <tr><td>Recommendation</td><td></td><td>Final Purchase</td></tr>
+    <tr><td><label>Frame Recommendation:</label> </td><td>
+    <%= f.text_field :rec_frame, autocomplete: "off", class: "form-control" %></td><td>
+    <%= f.text_field :fp_frame, autocomplete: "off", class: "form-control" %></td></tr>
+    <tr><td><label>LENS Recommendation:</label></td><td> 
+    <%= f.text_field :rec_lense, autocomplete: "off", class: "form-control" %></td><td>
+    <%= f.text_field :fp_lense, autocomplete: "off", class: "form-control" %></td></tr>
+    <tr><td><label>COATING Recommendation:</label> </td><td> 
+    <%= f.text_field :rec_coating, autocomplete: "off", class: "form-control" %></td><td>
+    <%= f.text_field :fp_coating, autocomplete: "off", class: "form-control" %></td></tr>
+    <tr><td><label>CSA Recommendation:</label> </td><td> 
+    <%= f.text_field :rec_csa, autocomplete: "off", class: "form-control" %></td><td>
+    <%= f.text_field :fp_csa, autocomplete: "off", class: "form-control" %></td></tr>
+    <tr><td><label>SUN RX Recommendation:</label> </td><td> 
+    <%= f.text_field :rec_sun_rx, autocomplete: "off", class: "form-control" %></td><td>
+    <%= f.text_field :fp_sun_rx, autocomplete: "off", class: "form-control" %></td></tr>
+    <tr><td><label> Optomentrist Note:</label> </td><td>
+    <%= f.text_field :opt_note, autocomplete: "off", class: "form-control" %></td></tr>
+    <tr><td><label> Remark</label> </td><td>
+    <%= f.text_field :remark, autocomplete: "off", class: "form-control" %></td></tr>
+    <tr><td><label> PID Frame:</label> </td><td>
+    <%= f.text_field :pid_frame, autocomplete: "off", class: "form-control" %></td></tr>
+    <tr><td><label>Lense Type:</label> </td><td>
+    <%= f.text_field :lense_tye1, autocomplete: "off", class: "form-control" %></td><td>
+    <%= f.text_field :lense_tye2, autocomplete: "off", class: "form-control" %></td> <td>
+    <%= f.text_field :lense_tye3, autocomplete: "off", class: "form-control" %></td></tr>
+    <tr><td>
+  <div class="form-group">
+    <label>Next Visit Date:</label>
+    <%= f.text_field :next_vist_date, autocomplete: "off", placeholder: "Next Visit", class: "form-control" %>
+  </div>
+  </td><td>
+  <div class="form-group" >
+    <label>Checked By:</label>
+    <%= f.text_field :checked_by, autocomplete: "off", placeholder: "Checked By", class: "form-control" %>
+  </div>
+  </td>
+  <td>
+  <div class="form-group">
+    <label>Singature:</label>
+    <%= f.text_field :singature, autocomplete: "off", placeholder: "Singature", class: "form-control" %>
+  </div>
+  </td>
+ </tr>
+  <tr><td>
+</table>
+
+
+<tr><td>
+<div class="box-footer">
+  <%= f.submit "Submit", class: "btn btn-primary"%>
+  <div class="pull-right">
+    <%#= link_to 'Delete account', current_user, method: :delete, data: { confirm: 'Are you sure? This action can not be reversed.' }, class: "btn btn-danger" %>
+  </div>
+</div>
+</td></tr>
+
+
+
+</div>
+</div>
+</table>
+<% end  %>

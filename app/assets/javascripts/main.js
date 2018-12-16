@@ -21,6 +21,7 @@ $(document).ready(function(){
 
 	$('#9').blur(update_balance);
 	$('#99').blur(update_balance_discount);
+	$('#89').blur(update_balance_advance);
 
 	$('#addrow').click(function(){
 		$('.item-row:last').after('<tr class="item-row"><td><input class="form-control item_name" placeholder="Item name" /></td><td><input class="form-control item_desc" placeholder="Item description" /></td><td><input class="form-control cost" value="0.00" /></td><td><input class="form-control qty" value="0" /></td><td class="price_td"><span class="price">0.00</span><span class="subtotal_currency"></span></td><td class="delete_td"><a class="delete" href="javascript:;" title="Remove row"><span class="btn btn-danger">x</span></a></td></tr>');
@@ -52,6 +53,10 @@ $(document).ready(function(){
 			var id = i.toString();
 			bind($('#' + id), $("#modal_" + id));
 		}
+		var disid = "99";
+		var adid = "89";
+		bind($('#' + disid), $("#modal_" + disid));
+		bind($('#' + adid), $("#modal_" + adid));
 
 		bind2($('#subtotal'), $("#modal_subtotal"));
 		bind2($('#invoice_number'), $("#modal_invoice_number"));

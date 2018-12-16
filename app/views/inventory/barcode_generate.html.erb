@@ -7,14 +7,14 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Dashboard
+          BarCode
           <small>Control panel</small>
         </h1>
         <ol class="breadcrumb">
           <li class="active">
-            <a href="#">
+            <!-- <a href="#">
               <i class="fa fa-home"></i>
-              Home Page</a>
+              Home Page</a> -->
             </li>
           </ol>
         </section>
@@ -29,13 +29,13 @@
                       <div class="box-body">
                         
                         <div class="form-group">
-                          <label>Product Name</label>
-                          <%= f.select :pid, options_for_select(@frames.map{ |c| [c.product_name, c.id] }) %>
-                          <%#= f.text_field :name, autocomplete: "off", placeholder: "Product Name", class: "form-control", required: true  %>
+                          <label>Select Product </label>
+                          <%= f.select(:pid, options_for_select(@frames.map{ |c| [c.product_name, c.id] }),{},class: 'form-control') %>
+                          
                         </div>
                         <div class="form-group">
-                          <label>Product ID</label>
-                          <%= f.text_field :pname, autocomplete: "off", placeholder: "Select Product ID", class: "form-control", required: true  %>
+                          <label>Product Name</label>
+                          <%= f.text_field :pname, autocomplete: "off", placeholder: "Product Name", class: "form-control", required: true  %>
                         </div>
                         <div class="form-group">
                           <label>Rate </label>
@@ -48,7 +48,7 @@
                       </div>
                       <!-- /.box-body -->
                       <div class="box-footer">
-                        <%= f.submit "Submit", class: "btn btn-primary"%>
+                        <%= f.submit "Generate", class: "btn btn-primary"%>
                         <div class="pull-right">
                           <%#= link_to 'Delete account', current_user, method: :delete, data: { confirm: 'Are you sure? This action can not be reversed.' }, class: "btn btn-danger" %>
                         </div>
@@ -64,11 +64,8 @@
             </div>
             <!-- /.box -->
           </div>
-          <br>
+          
         </section>
       </div>
     </div>
   </body>
-  <script type="text/javascript">
-    
-  </script>

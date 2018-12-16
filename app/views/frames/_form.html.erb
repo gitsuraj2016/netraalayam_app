@@ -136,7 +136,7 @@
 
         <div class="field">
          <label>Store</label>
-          <%= form.select :store_id, options_for_select(@stores.map{ |c| [c.name, c.id] },:selected => @frame.store_id) %>
+          <%= form.select(:store_id, options_for_select(@stores.map{ |c| [c.name, c.id] },:selected => @frame.store_id),{},class: 'form-control') %>
         </div>
 
          <div class="box-footer">

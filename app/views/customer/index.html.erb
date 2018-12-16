@@ -1,2 +1,77 @@
-<h1>Customer#index</h1>
-<p>Find me in app/views/customer/index.html.erb</p>
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+
+    <%= render 'layouts/header' %>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Dashboard
+          <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li class="active">
+            <a href="#">
+              <i class="fa fa-home"></i>
+              Home Page</a>
+            </li>
+          </ol>
+        </section>
+        <section class="content">
+          <div class="col-md-12">
+            <div class="box">
+              <div class="box-header with-border">
+                <h3 class="box-title">Customer (<%= @custs.count %>)</h3>
+                <%= link_to 'New Customer', customer_create_path , { class: "btn btn-primary newAddBtn"}%>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <table class="table table-bordered table-hover">
+                  <tr>
+                    <th>Name</th>
+                    <!-- <th>Address</th> -->
+                    <th>Profession</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Gender</th>
+                    <!-- <th>Age</th> -->
+                    <th>DOB</th>
+                    <th>Anniversary Date</th>
+                    <th>Major Complaint</th>
+                    <th>Ocular History</th>
+                    <th>Medical History</th>
+                    <th>Current Medication</th>
+                  </tr>
+                  <% @custs.each do |cust| %>
+                  <tr>
+                    <td><%= cust.name %></td>
+                    <td><%#= cust.address %></td>
+                    <td><%= cust.profession %></td>
+                     <td><%= cust.email %></td>
+                    <td><%= cust.mobile %></td>
+                    <td><%= cust.gender %></td>
+                    <td><%#= cust.age %></td>
+                    <td><%= cust.dob %></td>
+                    <td><%= cust.anniversary_date %></td>
+                     <td><%= cust.major_complaint %></td>
+                    <td><%= cust.ocular_history %></td>
+                    <td><%= cust.medical_history %></td>
+                    <td><%= cust.current_medication %></td>
+
+                   <!--  <td><%#= link_to "", edit_user_path(role), { class: "ion ion-edit"} %></td>
+                    <td>
+                      
+                    </td> -->
+                  </tr>
+                  <% end %>
+                </table>
+              </div>
+            </div>
+            <!-- /.box -->
+          </div>
+          <br>
+        </section>
+      </div>
+    </div>
+  </body>

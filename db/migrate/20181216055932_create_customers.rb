@@ -15,6 +15,8 @@ class CreateCustomers < ActiveRecord::Migration[5.2]
       t.string :dob
       t.string :anniversary_date
       t.string :cur_date
+      t.integer :entered_by
+      t.references :store, foreign_key: true
 
       t.timestamps
     end

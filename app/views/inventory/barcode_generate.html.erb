@@ -30,7 +30,7 @@
                         
                         <div class="form-group">
                           <label>Select Product </label>
-                          <%= f.select(:pid, options_for_select(@frames.map{ |c| [c.product_name, c.id] }),{},class: 'form-control') %>
+                          <%= f.select(:pid, options_for_select(@frames.map{ |c| [c.product_name, c.id] }),{},class: 'form-control', id: 'frame_id') %>
                           
                         </div>
                         <div class="form-group">
@@ -69,3 +69,22 @@
       </div>
     </div>
   </body>
+  <script type="text/javascript">
+    $( document ).ready(function() {
+      $('#frame_id').on('change', function() {
+         var fr_id = this.value ;
+            $.ajax({
+            url: "get_frame_data",
+            method: "GET",  
+            data: {frameid: fr_id },
+            error: function (xhr, status, error) {
+              console.error('AJAX Error: ' + status + error);
+            },
+            success: function (data) {
+              alert(JSON.stringify(data.frame.id));
+              // console.log(response);
+            }
+          });
+     });
+});
+  </script>

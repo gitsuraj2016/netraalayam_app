@@ -35,7 +35,8 @@
                     <th>Model no</th>
                     <!-- <th>Frame size</th>
                     <th>Bridge size</th> -->
-                    <th>Temple size</th>
+                    <!-- <th>Temple size</th> -->
+
                     <th>Eye size</th>
                     <th>Frame color</th>
                     <th>Glass color</th>
@@ -53,6 +54,7 @@
                     <th>Nrp</th>
                     <th>Discount</th> -->
                     <th>Store</th>
+                    <th>Quantity</th>
                     
                     <th>
                       <i class="ion ion-edit"></i>
@@ -68,7 +70,7 @@
                     <td><%= frame.frame_type %></td>
                     <td><%= frame.frame_shape %></td>
                     <td><%= frame.model_no %></td>
-                    <td><%= frame.frame_size %></td>
+                    <!-- <td><%= frame.frame_size %></td> -->
                     <td><%= frame.bridge_size %></td>
                     <!-- <td><%= frame.temple_size %></td>
                     <td><%= frame.eye_size %></td> -->
@@ -88,6 +90,7 @@
                     <td><%= frame.NRP %></td>
                     <td><%= frame.discount %></td> -->
                     <td><%= frame.store.name %></td>
+                    <td><%= frame.quantity %></td>
 
                     <td><%= link_to "", edit_frame_path(frame), { class: "ion ion-edit"} %></td>
                     <td>

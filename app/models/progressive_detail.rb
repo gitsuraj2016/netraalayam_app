@@ -1,0 +1,2 @@
+class ProgressiveDetail < ApplicationRecord
+end

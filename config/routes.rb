@@ -20,10 +20,12 @@ Rails.application.routes.draw do
   get 'inventory/index'
   get 'inventory/barcode_generate'
   post 'inventory/generate_barcode'
+  get 'inventory/get_frame_data'
 
   get 'customer/index'
   get 'customer/create'
   post 'customer/create_customer'
+
 
 
   resources :invoices, except: [:edit, :update, :destroy] do

@@ -29,6 +29,7 @@
               <div class="box-body">
                 <table class="table table-bordered table-hover">
                   <tr>
+                    <th>ID</th>
                     <th>Name</th>
                     <!-- <th>Address</th> -->
                     <th>Profession</th>
@@ -37,7 +38,7 @@
                     <th>Gender</th>
                     <!-- <th>Age</th> -->
                     <th>DOB</th>
-                    <th>Anniversary Date</th>
+                    <!-- <th>Anniversary Date</th> -->
                     <th>Major Complaint</th>
                     <th>Ocular History</th>
                     <th>Medical History</th>
@@ -45,15 +46,23 @@
                   </tr>
                   <% @custs.each do |cust| %>
                   <tr>
+                    <td><%= cust.id %></td>
                     <td><%= cust.name %></td>
-                    <td><%#= cust.address %></td>
+                    <!-- <td><%#= cust.address %></td> -->
                     <td><%= cust.profession %></td>
                      <td><%= cust.email %></td>
                     <td><%= cust.mobile %></td>
-                    <td><%= cust.gender %></td>
-                    <td><%#= cust.age %></td>
+                    <% if cust.gender == "1" %>
+                        <td>Male</td>
+                    <% elsif cust.gender == "2" %>
+                        <td>Female</td>
+                    <% elsif cust.gender == "3" %>
+                         <td>Kid</td>
+                    <% end %>
+                    
+                    <!-- <td><%#= cust.age %></td> -->
                     <td><%= cust.dob %></td>
-                    <td><%= cust.anniversary_date %></td>
+                    <!-- <td><%= cust.anniversary_date %></td> -->
                      <td><%= cust.major_complaint %></td>
                     <td><%= cust.ocular_history %></td>
                     <td><%= cust.medical_history %></td>

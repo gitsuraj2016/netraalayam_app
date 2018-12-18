@@ -15,12 +15,22 @@ class InventoryController < ApplicationController
 
   def barcode_generate
 
-
-  	  @frames = Frame.all
+  	  @frames = Frame.where(:store_id => current_user.store_id).all
       @barcode_for_html = '';
   	  # @barcode = Barby::Code128B.new('000000000000')
      #  @barcode_for_html = Barby::HtmlOutputter.new(@barcode)
       # bbcode
+  end
+  def get_frame_data
+
+     @frame = Frame.where(:id=> params[:frameid]).first
+     @fid = @frame.id;
+     @fname = @frame.product_name
+     @quantity = @frame.quantity
+     @mrp = @frame.MRP     
+     respond_to do |format|
+       format.js { }
+     end
   end
   def generate_barcode
 

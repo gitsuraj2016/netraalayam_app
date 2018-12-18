@@ -25,6 +25,7 @@ class CreateFrames < ActiveRecord::Migration[5.2]
       t.decimal :MRP , :precision => 8, :scale => 2
       t.decimal :NRP , :precision => 8, :scale => 2
       t.decimal :discount , :precision => 8, :scale => 2
+      t.integer :quantity
       t.references :store, foreign_key: true
 
       t.timestamps

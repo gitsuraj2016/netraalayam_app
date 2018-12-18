@@ -1,4 +1,4 @@
-<%= form_for :Customer, url: "create_customer" do |f| %>
+<%= form_for :customer, url: "create_customer" do |f| %>
 <table  class="table table-bordered">
 <div class="box-body">
   <!-- first row -->
@@ -36,7 +36,8 @@
   <div class="form-group">
     <label>Select Gender</label>
     <%#= f.password_field :gender, autocomplete: "off", placeholder: "Enter Password Again", class: "form-control" %>
-    <%= select_tag(:gender, options_for_select([["Male",1],["Female",2],["Kid",3]], params[:gender] ), class:"form-control") %>
+    <%=f.select(:gender, options_for_select([["Male",1],["Female",2],["Kid",3]], params[:gender] ),{}, class: "form-control") %>
+    <%#= f.select(:role_id, options_for_select(@roles.map{ |c| [c.name, c.id] }),{},class: 'form-control') %>
   </div>
 </div>
 </td>

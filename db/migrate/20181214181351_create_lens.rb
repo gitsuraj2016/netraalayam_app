@@ -12,6 +12,7 @@ class CreateLens < ActiveRecord::Migration[5.2]
       t.string :material
       t.string :power_range
       t.string :no_s
+      t.integer :quantity
       t.decimal :MRP , :precision => 8, :scale => 2
       t.decimal :NRP , :precision => 8, :scale => 2
       t.decimal :discount , :precision => 8, :scale => 2

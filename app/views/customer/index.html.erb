@@ -39,9 +39,9 @@
                     <!-- <th>Age</th> -->
                     <th>DOB</th>
                     <!-- <th>Anniversary Date</th> -->
-                    <th>Major Complaint</th>
-                    <th>Ocular History</th>
-                    <th>Medical History</th>
+                    <!-- <th>Major Complaint</th> -->
+                    <!-- <th>Ocular History</th> -->
+                    <!-- <th>Medical History</th> -->
                     <th>Current Medication</th>
                   </tr>
                   <% @custs.each do |cust| %>
@@ -63,15 +63,17 @@
                     <!-- <td><%#= cust.age %></td> -->
                     <td><%= cust.dob %></td>
                     <!-- <td><%= cust.anniversary_date %></td> -->
-                     <td><%= cust.major_complaint %></td>
-                    <td><%= cust.ocular_history %></td>
-                    <td><%= cust.medical_history %></td>
+                     <!-- <td><%= cust.major_complaint %></td> -->
+                    <!-- <td><%= cust.ocular_history %></td> -->
+                    <!-- <td><%= cust.medical_history %></td> -->
                     <td><%= cust.current_medication %></td>
+                    <td><%= link_to "edit", {:controller => "customer", :action => "edit", :cid => cust.id }%></td>
 
-                   <!--  <td><%#= link_to "", edit_user_path(role), { class: "ion ion-edit"} %></td>
+                    <td><%#= link_to "", customer_edit_path(cust), { class: "ion ion-edit"} %></td>
+
                     <td>
                       
-                    </td> -->
+                    </td> 
                   </tr>
                   <% end %>
                 </table>

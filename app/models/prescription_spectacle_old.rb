@@ -1,0 +1,2 @@
+class PrescriptionSpectacleOld < ApplicationRecord
+end

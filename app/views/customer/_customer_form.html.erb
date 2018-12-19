@@ -5,24 +5,25 @@
   <tr><td>
   <div class="form-group">
     <label>Name</label>
-    <%= f.text_field :name, autocomplete: "off", placeholder: "Enter Name", class: "form-control", required: true  %>
+    <%= f.hidden_field :cid, value: @cust.try!(:id)  %>
+    <%= f.text_field :name, value: @cust.try!(:name), autocomplete: "off", placeholder: "Enter Name", class: "form-control" %>
   </div>
   </td><td>
   <div class="form-group" >
     <label>Mobile</label>
-    <%= f.text_field :mobile, autocomplete: "off", placeholder: "Enter Mobile", class: "form-control", required: true  %>
+    <%= f.text_field :mobile, value: @cust.try!(:mobile) , autocomplete: "off", placeholder: "Enter Mobile", class: "form-control", required: true  %>
   </div>
   </td>
   <td>
   <div class="form-group">
     <label>Profession</label>
-    <%= f.text_field :profession, autocomplete: "off", placeholder: "Enter Profession", class: "form-control", required: true  %>
+    <%= f.text_field :profession, value: @cust.try!(:profession), autocomplete: "off", placeholder: "Enter Profession", class: "form-control", required: true  %>
   </div>
   </td>
   <td>
   <div class="form-group">
     <label>E-mail</label>
-    <%= f.text_field :email, autocomplete: "off", placeholder: "Enter Email", class: "form-control", required: true  %>
+    <%= f.text_field :email, value: @cust.try!(:email) , autocomplete: "off", placeholder: "Enter Email", class: "form-control", required: true  %>
   </div>
   </td></tr>
   <tr><td>
@@ -30,7 +31,7 @@
   <tr><td>
   <div class="form-group">
     <label>Address</label>
-    <%= f.text_area :address, autocomplete: "off", placeholder: "Enter Address", class: "form-control" %>
+    <%= f.text_area :address, value: @cust.try!(:address), autocomplete: "off", placeholder: "Enter Address", class: "form-control" %>
   </div>
   <td>
   <div class="form-group">
@@ -44,17 +45,17 @@
 <td>
 <div class="form-group">
     <label>Anniversary</label>
-    <%= f.text_field :anniversary_date, autocomplete: "off", placeholder: "Enter Anniversary", class: "form-control" %>
+    <%= f.text_field :anniversary_date,value: @cust.try!(:anniversary_date), autocomplete: "off", placeholder: "Enter Anniversary", class: "form-control" %>
   </div>
   <!-- <div class="form-group">
     <label>Age</label>
-    <%= f.text_field :age, autocomplete: "off", placeholder: "Enter age", class: "form-control" %>
+    <%= f.text_field :age, value: @cust.try!(:age), autocomplete: "off", placeholder: "Enter age", class: "form-control" %>
   </div> -->
   </td>
   <td>
   <div class="form-group">
     <label>Date of Birth</label>
-    <%= f.text_field :dob, autocomplete: "off", placeholder: "Date of Birth", class: "form-control" %>
+    <%= f.text_field :dob, value: @cust.try!(:dob) , autocomplete: "off", placeholder: "Date of Birth", class: "form-control" %>
   </div>
 </div>
 </td></tr>
@@ -63,26 +64,26 @@
   
   <div class="form-group">
     <label>Ocular History</label>
-    <%= f.text_area :ocular_history, autocomplete: "off", placeholder: "Ocular History", class: "form-control" %>
+    <%= f.text_area :ocular_history, value: @cust.try!(:ocular_history) , autocomplete: "off", placeholder: "Ocular History", class: "form-control" %>
   </div>
   </td>
   <td>
   <div class="form-group">
     <label>Major Complaint</label>
-    <%= f.text_field :major_complaint, autocomplete: "off", placeholder: "Major Complaint", class: "form-control" %>
+    <%= f.text_field :major_complaint, value: @cust.try!(:major_complaint) , autocomplete: "off", placeholder: "Major Complaint", class: "form-control" %>
   </div>
 </div>
 </td>
 <td>
   <div class="form-group">
     <label>Current medication</label>
-    <%= f.text_field :current_medication, autocomplete: "off", placeholder: "Current medication", class: "form-control" %>
+    <%= f.text_field :current_medication, value: @cust.try!(:current_medication) , autocomplete: "off", placeholder: "Current medication", class: "form-control" %>
   </div>
   </td>
   <td>
   <div class="form-group">
     <label>Medical History</label>
-    <%= f.text_field :medical_history, autocomplete: "off", placeholder: "Medical History", class: "form-control" %>
+    <%= f.text_field :medical_history, value: @cust.try!(:medical_history) ,autocomplete: "off", placeholder: "Medical History", class: "form-control" %>
   </div>
 </div>
 </td></tr>
@@ -103,13 +104,13 @@
     <tr><td>Right Eyes</td></tr>
     <tr><th>SPH</th><th>CYL</th><th>AXIS</th></tr>
     <tr>
-      <td><%= f.text_field :old_rgt_sph_1, autocomplete: "off", class: "form-control" %></td>
-      <td><%= f.text_field :old_rgt_cyl_1, autocomplete: "off", class: "form-control" %></td>
-      <td><%= f.text_field :old_rgt_axix_1, autocomplete: "off", class: "form-control" %></td></tr>
+      <td><%= f.text_field :old_rgt_sph_1, value: @pres_old.try!(:old_rgt_sph_1), autocomplete: "off", class: "form-control" %></td>
+      <td><%= f.text_field :old_rgt_cyl_1, value: @pres_old.try!(:old_rgt_cyl_1), autocomplete: "off", class: "form-control" %></td>
+      <td><%= f.text_field :old_rgt_axix_1, value: @pres_old.try!(:old_rgt_axix_1), autocomplete: "off", class: "form-control" %></td></tr>
     <tr>
-      <td><%= f.text_field :old_rgt_sph_2, autocomplete: "off",class: "form-control" %></td>
-      <td><%= f.text_field :old_rgt_cyl_2, autocomplete: "off",class: "form-control" %></td>
-      <td><%= f.text_field :old_rgt_axix_2, autocomplete: "off", class: "form-control" %></td>
+      <td><%= f.text_field :old_rgt_sph_2, value: @pres_old.try!(:old_rgt_sph_2), autocomplete: "off",class: "form-control" %></td>
+      <td><%= f.text_field :old_rgt_cyl_2, value: @pres_old.try!(:old_rgt_cyl_2), autocomplete: "off",class: "form-control" %></td>
+      <td><%= f.text_field :old_rgt_axix_2, value: @pres_old.try!(:old_rgt_axix_2), autocomplete: "off", class: "form-control" %></td>
     </tr>
   </table>
   </tr>
@@ -118,13 +119,13 @@
     <tr><td>Left Eyes</td></tr>
     <tr><th>SPH</th><th>CYL</th><th>AXIS</th></tr>
     <tr>
-    <td><%= f.text_field :old_lft_sph_1, autocomplete: "off", class: "form-control" %></td>
-    <td><%= f.text_field :old_lft_cyl_1, autocomplete: "off", class: "form-control" %></td>
-    <td><%= f.text_field :old_lft_axix_1, autocomplete: "off", class: "form-control" %></td></tr>
+    <td><%= f.text_field :old_lft_sph_1,value: @pres_old.try!(:old_lft_sph_1), autocomplete: "off", class: "form-control" %></td>
+    <td><%= f.text_field :old_lft_cyl_1,value: @pres_old.try!(:old_lft_cyl_1), autocomplete: "off", class: "form-control" %></td>
+    <td><%= f.text_field :old_lft_axix_1,value: @pres_old.try!(:old_lft_axix_1), autocomplete: "off", class: "form-control" %></td></tr>
     <tr>
-    <td><%= f.text_field :old_lft_sph_2, autocomplete: "off",class: "form-control" %></td>
-    <td><%= f.text_field :old_lft_cyl_2, autocomplete: "off",class: "form-control" %></td>
-    <td><%= f.text_field :old_lft_axix_2, autocomplete: "off", class: "form-control" %></td>
+    <td><%= f.text_field :old_lft_sph_2,value: @pres_old.try!(:old_lft_sph_2), autocomplete: "off",class: "form-control" %></td>
+    <td><%= f.text_field :old_lft_cyl_2,value: @pres_old.try!(:old_lft_cyl_2), autocomplete: "off",class: "form-control" %></td>
+    <td><%= f.text_field :old_lft_axix_2,value: @pres_old.try!(:old_lft_axix_2), autocomplete: "off", class: "form-control" %></td>
     </tr>
   </table>
   </tr>
@@ -140,13 +141,13 @@
      <tr><td>Right Eyes</td></tr>
     <tr><th>SPH</th><th>CYL</th><th>AXIS</th></tr>
     <tr>
-      <td><%= f.text_field :new_rgt_sph_1, autocomplete: "off", class: "form-control" %></td>
-      <td><%= f.text_field :new_rgt_cyl_1, autocomplete: "off", class: "form-control" %></td>
-      <td><%= f.text_field :new_rgt_axix_1, autocomplete: "off", class: "form-control" %></td></tr>
+      <td><%= f.text_field :new_rgt_sph_1, value: @pres_new.try!(:new_rgt_sph_1) ,autocomplete: "off", class: "form-control" %></td>
+      <td><%= f.text_field :new_rgt_cyl_1, value: @pres_new.try!(:new_rgt_cyl_1) , autocomplete: "off", class: "form-control" %></td>
+      <td><%= f.text_field :new_rgt_axix_1, value: @pres_new.try!(:new_rgt_axix_1) , autocomplete: "off", class: "form-control" %></td></tr>
     <tr>
-      <td><%= f.text_field :new_rgt_sph_2, autocomplete: "off",class: "form-control" %></td>
-      <td><%= f.text_field :new_rgt_cyl_2, autocomplete: "off",class: "form-control" %></td>
-      <td><%= f.text_field :new_rgt_axix_2, autocomplete: "off", class: "form-control" %></td>
+      <td><%= f.text_field :new_rgt_sph_2, value: @pres_new.try!(:new_rgt_sph_2) , autocomplete: "off",class: "form-control" %></td>
+      <td><%= f.text_field :new_rgt_cyl_2, value: @pres_new.try!(:new_rgt_cyl_2) , autocomplete: "off",class: "form-control" %></td>
+      <td><%= f.text_field :new_rgt_axix_2, value: @pres_new.try!(:new_rgt_axix_2) , autocomplete: "off", class: "form-control" %></td>
     </tr>
   </table>
   </tr>
@@ -155,13 +156,13 @@
     <tr><td>Left Eyes</td></tr>
     <tr><th>SPH</th><th>CYL</th><th>AXIS</th></tr>
     <tr>
-    <td><%= f.text_field :new_lft_sph_1, autocomplete: "off", class: "form-control" %></td>
-    <td><%= f.text_field :new_lft_cyl_1, autocomplete: "off", class: "form-control" %></td>
-    <td><%= f.text_field :new_lft_axix_1, autocomplete: "off", class: "form-control" %></td></tr>
+    <td><%= f.text_field :new_lft_sph_1, value: @pres_new.try!(:new_lft_sph_1), autocomplete: "off", class: "form-control" %></td>
+    <td><%= f.text_field :new_lft_cyl_1, value: @pres_new.try!(:new_lft_cyl_1) , autocomplete: "off", class: "form-control" %></td>
+    <td><%= f.text_field :new_lft_axix_1, value: @pres_new.try!(:new_lft_axix_1) , autocomplete: "off", class: "form-control" %></td></tr>
     <tr>
-    <td><%= f.text_field :new_lft_sph_2, autocomplete: "off",class: "form-control" %></td>
-    <td><%= f.text_field :new_lft_cyl_2, autocomplete: "off",class: "form-control" %></td>
-    <td><%= f.text_field :new_lft_axix_2, autocomplete: "off", class: "form-control" %></td></tr>
+    <td><%= f.text_field :new_lft_sph_2, value: @pres_new.try!(:new_lft_sph_2) , autocomplete: "off",class: "form-control" %></td>
+    <td><%= f.text_field :new_lft_cyl_2, value: @pres_new.try!(:new_lft_cyl_2) , autocomplete: "off",class: "form-control" %></td>
+    <td><%= f.text_field :new_lft_axix_2, value: @pres_new.try!(:new_lft_axix_2) , autocomplete: "off", class: "form-control" %></td></tr>
   </table>
   </tr>
   <!-- <td>Left Eyes</td></tr> -->
@@ -176,24 +177,24 @@
   <tr><td>
   <div class="form-group">
     <label>RE PD:</label>
-    <%= f.text_field :re_pd, autocomplete: "off", placeholder: "RE PD", class: "form-control" %>
+    <%= f.text_field :re_pd, value: @pd.try!(:repd) ,autocomplete: "off", placeholder: "RE PD", class: "form-control" %>
   </div>
   </td><td>
   <div class="form-group" >
     <label>LE PD:</label>
-    <%= f.text_field :le_pd, autocomplete: "off", placeholder: "LE PD", class: "form-control" %>
+    <%= f.text_field :le_pd, value: @pd.try!(:lepd), autocomplete: "off", placeholder: "LE PD", class: "form-control" %>
   </div>
   </td>
   <td>
   <div class="form-group">
     <label>BEFH:</label>
-    <%= f.text_field :befh, autocomplete: "off", placeholder: "BEFH", class: "form-control" %>
+    <%= f.text_field :befh, value: @pd.try!(:befh) , autocomplete: "off", placeholder: "BEFH", class: "form-control" %>
   </div>
   </td>
   <td>
   <div class="form-group">
     <label>ED:</label>
-    <%= f.text_field :ed, autocomplete: "off", placeholder: "ED", class: "form-control"  %>
+    <%= f.text_field :ed, value: @pd.try!(:ed) , autocomplete: "off", placeholder: "ED", class: "form-control"  %>
   </div>
   </td></tr>
   <tr><td>
@@ -209,45 +210,45 @@
 <table class="table table-bordered">
     <tr><td>Recommendation</td><td></td><td>Final Purchase</td></tr>
     <tr><td><label>Frame Recommendation:</label> </td><td>
-    <%= f.text_field :rec_frame, autocomplete: "off", class: "form-control" %></td><td>
-    <%= f.text_field :fp_frame, autocomplete: "off", class: "form-control" %></td></tr>
+    <%= f.text_field :rec_frame, value: @recom.try!(:frame_recom) ,autocomplete: "off", class: "form-control" %></td><td>
+    <%= f.text_field :fp_frame, value: @recom.try!(:frame_fp) , autocomplete: "off", class: "form-control" %></td></tr>
     <tr><td><label>LENS Recommendation:</label></td><td> 
-    <%= f.text_field :rec_lense, autocomplete: "off", class: "form-control" %></td><td>
-    <%= f.text_field :fp_lense, autocomplete: "off", class: "form-control" %></td></tr>
+    <%= f.text_field :rec_lense, value: @recom.try!(:lens_recom) ,autocomplete: "off", class: "form-control" %></td><td>
+    <%= f.text_field :fp_lense, value: @recom.try!(:lens_fp) , autocomplete: "off", class: "form-control" %></td></tr>
     <tr><td><label>COATING Recommendation:</label> </td><td> 
-    <%= f.text_field :rec_coating, autocomplete: "off", class: "form-control" %></td><td>
-    <%= f.text_field :fp_coating, autocomplete: "off", class: "form-control" %></td></tr>
+    <%= f.text_field :rec_coating, value: @recom.try!(:coating_recom) , autocomplete: "off", class: "form-control" %></td><td>
+    <%= f.text_field :fp_coating, value: @recom.try!(:coating_fp), autocomplete: "off", class: "form-control" %></td></tr>
     <tr><td><label>CSA Recommendation:</label> </td><td> 
-    <%= f.text_field :rec_csa, autocomplete: "off", class: "form-control" %></td><td>
-    <%= f.text_field :fp_csa, autocomplete: "off", class: "form-control" %></td></tr>
+    <%= f.text_field :rec_csa, value: @recom.try!(:csa_recom) , autocomplete: "off", class: "form-control" %></td><td>
+    <%= f.text_field :fp_csa, value: @recom.try!(:csa_fp) , autocomplete: "off", class: "form-control" %></td></tr>
     <tr><td><label>SUN RX Recommendation:</label> </td><td> 
-    <%= f.text_field :rec_sun_rx, autocomplete: "off", class: "form-control" %></td><td>
-    <%= f.text_field :fp_sun_rx, autocomplete: "off", class: "form-control" %></td></tr>
+    <%= f.text_field :rec_sun_rx, value: @recom.try!(:sunrx_recom), autocomplete: "off", class: "form-control" %></td><td>
+    <%= f.text_field :fp_sun_rx, value: @recom.try!(:sunrx_fp) , autocomplete: "off", class: "form-control" %></td></tr>
     <tr><td><label> Optomentrist Note:</label> </td><td>
-    <%= f.text_field :opt_note, autocomplete: "off", class: "form-control" %></td></tr>
+    <%= f.text_field :opt_note, value: @adinfo.try!(:optomentrist_note) , autocomplete: "off", class: "form-control" %></td></tr>
     <tr><td><label> Remark</label> </td><td>
-    <%= f.text_field :remark, autocomplete: "off", class: "form-control" %></td></tr>
+    <%= f.text_field :remark, value: @adinfo.try!(:remark) , autocomplete: "off", class: "form-control" %></td></tr>
     <tr><td><label> PID Frame:</label> </td><td>
-    <%= f.text_field :pid_frame, autocomplete: "off", class: "form-control" %></td></tr>
+    <%= f.text_field :pid_frame, value: @adinfo.try!(:pid_frame),  autocomplete: "off", class: "form-control" %></td></tr>
     <tr><td><label>Lense Type:</label> </td><td>
-    <%= f.text_field :lense_tye1, autocomplete: "off", class: "form-control" %></td><td>
-    <%= f.text_field :lense_tye2, autocomplete: "off", class: "form-control" %></td> <td>
-    <%= f.text_field :lense_tye3, autocomplete: "off", class: "form-control" %></td></tr>
+    <%= f.text_field :lense_tye1, value: @adinfo.try!(:lense_type_a), autocomplete: "off", class: "form-control" %></td><td>
+    <%= f.text_field :lense_tye2, value: @adinfo.try!(:lense_type_b), autocomplete: "off", class: "form-control" %></td> <td>
+    <%= f.text_field :lense_tye3, value: @adinfo.try!(:lense_type_c), autocomplete: "off", class: "form-control" %></td></tr>
     <tr><td>
   <div class="form-group">
     <label>Next Visit Date:</label>
-    <%= f.text_field :next_vist_date, autocomplete: "off", placeholder: "Next Visit", class: "form-control" %>
+    <%= f.text_field :next_vist_date, value: @adinfo.try!(:next_visit_date) , autocomplete: "off", placeholder: "Next Visit", class: "form-control" %>
   </div>
   </td><td>
   <div class="form-group" >
     <label>Checked By:</label>
-    <%= f.text_field :checked_by, autocomplete: "off", placeholder: "Checked By", class: "form-control" %>
+    <%= f.text_field :checked_by, value: @adinfo.try!(:checked_by) , autocomplete: "off", placeholder: "Checked By", class: "form-control" %>
   </div>
   </td>
   <td>
   <div class="form-group">
     <label>Singature:</label>
-    <%= f.text_field :singature, autocomplete: "off", placeholder: "Singature", class: "form-control" %>
+    <%= f.text_field :singature, value: @adinfo.try!(:singature) , autocomplete: "off", placeholder: "Singature", class: "form-control" %>
   </div>
   </td>
  </tr>

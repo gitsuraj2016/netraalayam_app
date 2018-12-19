@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   get 'customer/index'
   get 'customer/create'
+  get 'customer/edit'
   post 'customer/create_customer'
 
 

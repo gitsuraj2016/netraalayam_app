@@ -4,7 +4,7 @@
     <%= f.error_notification %>
     <div class="row">
       <div class="col-md-12">
-        <h3 class="page-header">Netraalayam<small class="pull-right">Date:-  <span class="invoice_header_date"></span></small></h3>
+        <h3 class="page-header">Netraalayam<small class="pull-right">Date:- <%= @curdate %> <!-- <span class="invoice_header_date"></span> --></small></h3>
       </div><!-- /.col -->
     </div>
 
@@ -12,32 +12,39 @@
       <div class="col-md-6 invoice-col">
         Customer Info
         <address>
-          <%= f.input_field :company, class: "form-control", id: "1" %>
-          <input class="form-control" id= "2"  placeholder="address line 1" />
-          <input class="form-control" id= "3"  placeholder="address line 2" />
-          <input class="form-control" id= "4"  placeholder="phone number" />
+          
+          <select class="form-control custinvoice" id="select_cust_id">
+          <option value="0">Select Customer</option>
+          <%= @custs.each do | cust | %>
+             <option value="<%= cust.id %>"><%= cust.name %></option>
+          <% end %>
+          </select>
+          <input class="form-control cid" id= "2"  placeholder="Customer ID" readonly="true" />
+          <input class="form-control cname" id= "3"  placeholder="Customer Name"  readonly="true" />
+          <input class="form-control cmobile" id= "4"  placeholder="Customer Mobile" readonly="true" />
         </address>
       </div><!-- /.col -->
       <div class="col-md-6 invoice-col">
-        Company Info
+        Customer Info
         <address>
-          <%= f.input_field :contragent, class: "form-control", id: "5" %>
-          <input class="form-control" id= "6"  placeholder="address line 1" />
-          <input class="form-control" id= "7"  placeholder="address line 2" />
-          <input class="form-control" id= "8"  placeholder="phone number" />
+          <%#= f.input_field :contragent, class: "form-control", id: "5" %>
+          <input class="form-control cemail" id= "5"  placeholder="Customer E-mail" readonly="true" />
+          <input class="form-control cgen" id= "6"  placeholder="Customer Gender" readonly="true" />
+          <input class="form-control cprofess" id= "7"  placeholder="Customer profession" readonly="true" />
+          <input class="form-control cadd" id= "8"  placeholder="Customer Address" readonly="true" />
         </address>
       </div><!-- /.col -->
       <div class="col-md-4 invoice-col" style="margin-left: 50%">
         <form class="form-horizontal">
 
           <div class="form-group">
-            <div class="col-md-8"><label>Invoice # <span id="invoice_number"><%= (Invoice.last.present? ? (Invoice.last.id + 1) : 1) %></span></label></div>
+            <div class="col-md-8"><label>Bill No:- # <span id="invoice_number"><%= (Order.last.present? ? (Order.last.id + 1) : 1) %></span></label></div>
             <!-- <div class="col-md-8 invoice_num"></div> -->
           </div>
           <!-- <div class="col-md-12"></div> -->
           <div class="form-group">
-            <div class="col-md-12"><%= f.label :date, required: false %></div>
-            <div class="col-md-12"><%= f.input_field :date, class: "form-control datepicker", as: :string, id: "invoice_date" %></div>
+            <div class="col-md-12"><label>Delivery Date</label></div>
+            <div class="col-md-12"><%= f.input_field :date, placeholder: "Delivery Date", class: "form-control datepicker", as: :string, id: "invoice_date" %></div>
           </div>
 
           <div class="col-md-12"></div>
@@ -72,27 +79,42 @@
       
           <tbody>
             <tr class="item-row">
-              <td><input class="form-control item_name" value="Item #1" /></td>
+              <td><input class="form-control item_name" id="item_id1" value="" /></td>
               <td><input class="form-control item_desc" value="Description" /></td>
-              <td><input class="form-control cost" value="" /></td>
-              <td><input class="form-control qty" value="" /></td>
+              <td><input class="form-control cost" id="item1_cost" value="" /></td>
+              <td><input class="form-control qty" id="item1_qty" value="" /></td>
               <td class="price_td"><span class="price"></span><span class="subtotal_currency"></span></td>
               <td class="delete_td"><a class="delete" href="javascript:;" title="Remove row"><span class="btn btn-danger">x</span></a></td>
             </tr>
           
             <tr class="item-row">
-              <td><input class="form-control item_name" value="Item #2" /></td>
-
+              <td><input class="form-control item_name" id="item_id2" value="" /></td>
               <td><input class="form-control item_desc" value="Description #2" /></td>
-              <td><input class="form-control cost" value="" /></td>
-              <td><input class="form-control qty" value="" /></td>
+              <td><input class="form-control cost" id="item2_cost" value="" /></td>
+              <td><input class="form-control qty" id="item2_qty" value="" /></td>
+              <td class="price_td"><span class="price"></span><span class="subtotal_currency"></span></td>
+              <td class="delete_td"><a class="delete" href="javascript:;" title="Remove row"><span class="btn btn-danger">x</span></a></td>
+            </tr>
+            <tr class="item-row">
+              <td><input class="form-control item_name" id="item_id3" value="" /></td>
+              <td><input class="form-control item_desc" value="Description #2" /></td>
+              <td><input class="form-control cost" id="item3_cost" value="" /></td>
+              <td><input class="form-control qty" id="item3_qty" value="" /></td>
+              <td class="price_td"><span class="price"></span><span class="subtotal_currency"></span></td>
+              <td class="delete_td"><a class="delete" href="javascript:;" title="Remove row"><span class="btn btn-danger">x</span></a></td>
+            </tr>
+            <tr class="item-row">
+              <td><input class="form-control item_name" id="item_id4" value="" /></td>
+              <td><input class="form-control item_desc" value="Description #2" /></td>
+              <td><input class="form-control cost" id="item4_cost" value="" /></td>
+              <td><input class="form-control qty" id="item4_qty" value="" /></td>
               <td class="price_td"><span class="price"></span><span class="subtotal_currency"></span></td>
               <td class="delete_td"><a class="delete" href="javascript:;" title="Remove row"><span class="btn btn-danger">x</span></a></td>
             </tr>
           
-            <tr id="hiderow">
+           <!--  <tr id="hiderow">
               <td colspan="6"><a id="addrow" class="btn btn-success btn-sm" href="javascript:;" title="Add a row"><span class="ti-plus"></span>  Add a row</a></td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
       </div>
@@ -108,11 +130,11 @@
             </tr>
             <tr>
               <th>Tax:</th>
-              <td><input id="9" class="form-control" value="0.00" /></td>
+              <td><input id="9" class="form-control input_tax" value="0.00" /></td>
             </tr>
             <tr>
               <th>Discount:</th>
-              <td><input id="99" class="form-control" value="0.00" /></td>
+              <td><input id="99" class="form-control input_discount" value="0.00" /></td>
             </tr>
             <tr>
               <th>Total:</th>
@@ -121,7 +143,7 @@
             </tr>
             <tr>
               <th>Advance:</th>
-              <td><input id="89" class="form-control" value="0.00" /></td>
+              <td><input id="89" class="form-control input_advance" value="0.00" /></td>
             </tr>
             <tr>
               <th>Payment Type</th>
@@ -143,7 +165,8 @@
     <div class="row">
       <div class="col-xs-12 pull-left">
         <a class="btn btn-info btn-sm" id="invoice_button" data-toggle="modal" data-target="#invoice_modal">Show Invoice</a>
-        <%= f.button :submit, 'Submit Payment', class: 'btn btn-warning btn-sm', id: "submit_invoice" %>    
+        <input type="button" name="" value="Generate" id="submit_invoice" class="btn btn-warning btn-sm">
+        <%#= f.button :submit, 'Submit Payment', class: 'btn btn-warning btn-sm', id: "submit_invoice" %>    
       </div>
     </div>
 
@@ -167,3 +190,85 @@
     </div>
   </div>
 </div>
+<style type="text/css">
+  .custinvoice{
+    margin-bottom: 5px !important;
+    width: 70% !important;
+  }
+</style>
+<script type="text/javascript">
+    $( document ).ready(function() {
+      $('#select_cust_id').on('change', function() {
+         var cust_id = this.value ;
+         // alert(cust_id);
+            $.ajax({
+            url: "get_cust_data",
+            method: "GET",  
+            data: {custid: cust_id },
+            error: function (xhr, status, error) {
+              console.error('AJAX Error: ' + status + error);
+            },
+            success: function (data) {
+              // alert(JSON.stringify(data.frame.id));
+              // console.log(response);
+            }
+          });
+     });
+    $("#submit_invoice").click(function(){
+      var item1 = $('#item_id1').val();
+      var item2 = $('#item_id2').val();
+      var item3 = $('#item_id3').val();
+      var item4 = $('#item_id4').val();
+
+      var item1_cost = $('#item1_cost').val();
+      var item2_cost = $('#item2_cost').val();
+      var item3_cost = $('#item3_cost').val();
+      var item4_cost = $('#item4_cost').val();
+
+      var item1_qty = $('#item1_qty').val();
+      var item2_qty = $('#item2_qty').val();
+      var item3_qty = $('#item3_qty').val();
+      var item4_qty = $('#item4_qty').val();
+
+      var subtotal = $('#subtotal').text();
+      var input_tax = $('.input_tax').val();
+      var input_discount = $('.input_discount').val();
+      var invoice_total = $('#invoice_total').text();
+      var input_advance = $('.input_advance').val();
+      var custid = $('.cid').val();
+
+        $.ajax({
+            url: "generate_cust_invoice",
+            method: "POST",  
+            data: {
+                     custid: custid,
+                     item_id1: item1,
+                     item_id2: item2,
+                     item_id3: item3,
+                     item_id4: item4,
+                     item1_cost: item1_cost,
+                     item2_cost: item2_cost,
+                     item3_cost: item3_cost,
+                     item4_cost: item4_cost,
+                     item1_qty: item1_qty,
+                     item2_qty: item2_qty,
+                     item3_qty: item3_qty,
+                     item4_qty: item4_qty,
+                     subtotal: subtotal,
+                     input_tax: input_tax,
+                     input_discount: input_discount,
+                     invoice_total: invoice_total,
+                     input_advance: input_advance,
+                  },
+            error: function (xhr, status, error) {
+              console.error('AJAX Error: ' + status + error);
+            },
+            success: function (data) {
+              alert(data.status);
+              // console.log(response);
+            }
+          });
+
+      });
+});
+  </script>

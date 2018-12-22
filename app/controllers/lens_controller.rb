@@ -27,7 +27,7 @@ class LensController < ApplicationController
   # POST /lens.json
   def create
     @len = Len.new(len_params)
-
+    create_item_data(@len)
     respond_to do |format|
       if @len.save
         format.html { redirect_to({:action => :index}, {:notice => 'Lens was successfully created.'}) }
@@ -38,6 +38,14 @@ class LensController < ApplicationController
         format.json { render json: @len.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def create_item_data(lens)
+     item =  Item.new
+     item.product_type = "lense"
+     item.product_id =  lens.id
+     item.barcode_status = false
+     item.save
   end
 
   # PATCH/PUT /lens/1

@@ -50,7 +50,7 @@
                       <div class="box-footer">
                         <%= f.submit "Generate", class: "btn btn-primary"%>
                         <div class="pull-right">
-                          <%#= link_to 'Delete account', current_user, method: :delete, data: { confirm: 'Are you sure? This action can not be reversed.' }, class: "btn btn-danger" %>
+                         <button class="btn btn-primary" onclick="printDiv('print-barcode')">Print</button>
                         </div>
                       </div>
 
@@ -60,12 +60,15 @@
                       </div>
                       <% end  %>
               </div>
+               <div id="print-barcode">
                 <%= render 'barcode_render' %>
+                </div>>
             </div>
             <!-- /.box -->
           </div>
           
         </section>
+       
       </div>
     </div>
   </body>

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   
+  
   resources :lens
   
   resources :frames
@@ -26,6 +27,14 @@ Rails.application.routes.draw do
   get 'customer/create'
   get 'customer/edit'
   post 'customer/create_customer'
+
+  get 'invoices/get_cust_data'
+  post 'invoices/generate_cust_invoice'
+
+  get 'report/show_order_data'
+  get 'report/index'
+  get 'report/csv'
+  get 'report/excel'
 
 
 

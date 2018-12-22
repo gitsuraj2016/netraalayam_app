@@ -1,0 +1,39 @@
+<div class="box-body " id="orderData">
+ <% if @orders.count == 0 %>
+  <p>No Data Found</p>
+  <% else %>
+  
+  <table class="table table-bordered table-hover">
+    <tr>
+       <th>Order ID</th>
+      <th>Store Name</th>
+      <th>Order Amt</th>
+      <th>Order Delivery Date</th>
+    </tr>
+    <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.id %></td>
+      <td><%= order.store.name %></td>
+      <td><%= order.total_amt %></td>
+      <td><%= order.delivery_date %></td>
+    </tr>
+    <% end %>
+
+  </table>
+  <% end %>
+  <% if @orders.count != 0 %>
+  <div style="margin-top: 30px;">
+     <p>
+  Download:
+  <%= link_to "CSV", report_csv_path(format: "csv") %> |
+  <%= link_to "Excel", report_excel_path(format: "csv") %>
+</p>
+            <!-- <table>
+              <tr>
+    <td><input type="button" name=""  class="btn btn-warning btn-sm" value="Download CSV"></td>
+    <td><input type="button" name="" class="btn btn-warning btn-sm" value="Download Excel"></td></tr>
+            </table> -->
+            </div>
+    
+</div>
+<% end %>

@@ -30,6 +30,7 @@ class FramesController < ApplicationController
 
     respond_to do |format|
       if @frame.save
+        create_item_data(@frame)
         format.html { redirect_to({:action => :index}, {:notice => 'Frame was successfully created.'}) }
         # format.html { redirect_to @frame, notice: 'Frame was successfully created.' }
         format.json { render :show, status: :created, location: @frame }
@@ -38,6 +39,14 @@ class FramesController < ApplicationController
         format.json { render json: @frame.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def create_item_data(frame)
+     item =  Item.new
+     item.product_type = "frame"
+     item.product_id =  frame.id
+     item.barcode_status = false
+     item.save
   end
 
   # PATCH/PUT /frames/1

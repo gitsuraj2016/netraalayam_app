@@ -9,30 +9,30 @@ class CustomerController < ApplicationController
   end
 
   def create_customer
-      
-      if params[:customer][:cid]
-        cid = params[:customer][:cid]
-      	cust = Customer.where( :id=> cid).first
-      	if cust.present?
-		  cust.name  = params[:customer][:name]
-		  cust.address = params[:customer][:address]
-		  cust.profession = params[:customer][:profession]
-		  cust.email = params[:customer][:email]
-		  cust.mobile = params[:customer][:mobile]
-		  cust.gender = params[:customer][:gender]
-		  # cust.age = params[:customer][:name]
-		  cust.dob = params[:customer][:dob]
-		  cust.anniversary_date = params[:customer][:anniversary_date]
-		  cust.major_complaint = params[:customer][:major_complaint]
-		  cust.ocular_history = params[:customer][:ocular_history]
-		  cust.medical_history = params[:customer][:medical_history]
-		  cust.current_medication = params[:customer][:current_medication]
-		  cust.entered_by = current_user.id
-		  cust.store_id = current_user.store_id
-	      cust.save
-          
-          pres_old = PrescriptionSpectacleOld.where(:customer_id => cust.id).first
-          if pres_old.present?
+   
+        if params[:customer][:cid].present?
+        	cid = params[:customer][:cid]
+	      	cust = Customer.where(:id=> cid).first
+	      	if cust.present?
+			  cust.name  = params[:customer][:name]
+			  cust.address = params[:customer][:address]
+			  cust.profession = params[:customer][:profession]
+			  cust.email = params[:customer][:email]
+			  cust.mobile = params[:customer][:mobile]
+			  cust.gender = params[:customer][:gender]
+			  # cust.age = params[:customer][:name]
+			  cust.dob = params[:customer][:dob]
+			  cust.anniversary_date = params[:customer][:anniversary_date]
+			  cust.major_complaint = params[:customer][:major_complaint]
+			  cust.ocular_history = params[:customer][:ocular_history]
+			  cust.medical_history = params[:customer][:medical_history]
+			  cust.current_medication = params[:customer][:current_medication]
+			  cust.entered_by = current_user.id
+			  cust.store_id = current_user.store_id
+		      cust.save
+		    end
+		    pres_old = PrescriptionSpectacleOld.where(:customer_id => cust.id).first
+            if pres_old.present?
           	  pres_old.customer_id = cust.id
 			  pres_old.old_rgt_sph_1  = params[:customer][:old_rgt_sph_1]
 			  pres_old.old_rgt_cyl_1  = params[:customer][:old_rgt_cyl_1]
@@ -47,11 +47,9 @@ class CustomerController < ApplicationController
 			  pres_old.old_lft_cyl_2  = params[:customer][:old_lft_cyl_2]
 			  pres_old.old_lft_axix_2 = params[:customer][:old_lft_axix_2]
 			  pres_old.save
-
-          end
-          pres_new = PrescriptionSpectacleNew.where(:customer_id => cust.id).first
-
-          if pres_new.present?
+            end
+            pres_new = PrescriptionSpectacleNew.where(:customer_id => cust.id).first
+	        if pres_new.present?
           	  pres_new.customer_id = cust.id
 			  pres_new.new_rgt_sph_1  = params[:customer][:new_rgt_sph_1]
 			  pres_new.new_rgt_cyl_1  = params[:customer][:new_rgt_cyl_1]
@@ -66,20 +64,18 @@ class CustomerController < ApplicationController
 			  pres_new.new_lft_cyl_2  = params[:customer][:new_lft_cyl_2]
 			  pres_new.new_lft_axix_2 = params[:customer][:new_lft_axix_2]
 			  pres_new.save
-
-          end
-          pd = ProgressiveDetail.where(:customer_id =>cust.id).first
-          if pd.present?
+	        end
+	        pd = ProgressiveDetail.where(:customer_id =>cust.id).first
+            if pd.present?
           	  pd.repd = params[:customer][:re_pd]
 	          pd.lepd = params[:customer][:le_pd]
 	          pd.befh = params[:customer][:befh]
 	          pd.ed = params[:customer][:ed]
 	          pd.customer_id = cust.id
 	          pd.save
-
-          end
-          recom = Recommendation.where(:customer_id =>cust.id).first
-          if recom.present?
+            end 
+            recom = Recommendation.where(:customer_id =>cust.id).first
+	        if recom.present?
           	  recom.frame_recom = params[:customer][:rec_frame]
 	          recom.lens_recom = params[:customer][:rec_lense]
 	          recom.coating_recom = params[:customer][:rec_coating]
@@ -93,10 +89,9 @@ class CustomerController < ApplicationController
 	          recom.sunrx_fp = params[:customer][:fp_sun_rx]
 	          recom.customer_id = cust.id
 	          recom.save
-          end
-
-          adinfo = AdditionalInfo.where(:customer_id =>cust.id).first
-          if adinfo.present?
+	        end
+	        adinfo = AdditionalInfo.where(:customer_id =>cust.id).first
+	        if adinfo.present?
           	  adinfo.optomentrist_note = params[:customer][:opt_note]
 	          adinfo.remark = params[:customer][:remark]
 	          adinfo.pid_frame = params[:customer][:pid_frame]
@@ -109,36 +104,28 @@ class CustomerController < ApplicationController
 	          adinfo.singature = params[:customer][:singature]
 	          adinfo.customer_id = cust.id
 	          adinfo.save
-          end
-      	end
-      	respond_to do |format|
-	      if cust.present?
-	         format.html { redirect_to({:action => :index}, {:notice => 'Customer was successfully Updated.'}) }
-	      end
-	    end
-      	
-    else
-     
-	  cust = Customer.new
-	  cust.name  = params[:customer][:name]
-	  cust.address = params[:customer][:address]
-	  cust.profession = params[:customer][:profession]
-	  cust.email = params[:customer][:email]
-	  cust.mobile = params[:customer][:mobile]
-	  cust.gender = params[:customer][:gender]
-	  # cust.age = params[:customer][:name]
-	  cust.dob = params[:customer][:dob]
-	  cust.anniversary_date = params[:customer][:anniversary_date]
-	  cust.major_complaint = params[:customer][:major_complaint]
-	  cust.ocular_history = params[:customer][:ocular_history]
-	  cust.medical_history = params[:customer][:medical_history]
-	  cust.current_medication = params[:customer][:current_medication]
-	  cust.entered_by = current_user.id
-	  cust.store_id = current_user.store_id
-      cust.save
+	        end
 
-	    if cust.present?
-	       
+        else
+			  cust = Customer.new
+			  cust.name  = params[:customer][:name]
+			  cust.address = params[:customer][:address]
+			  cust.profession = params[:customer][:profession]
+			  cust.email = params[:customer][:email]
+			  cust.mobile = params[:customer][:mobile]
+			  cust.gender = params[:customer][:gender]
+			  # cust.age = params[:customer][:name]
+			  cust.dob = params[:customer][:dob]
+			  cust.anniversary_date = params[:customer][:anniversary_date]
+			  cust.major_complaint = params[:customer][:major_complaint]
+			  cust.ocular_history = params[:customer][:ocular_history]
+			  cust.medical_history = params[:customer][:medical_history]
+			  cust.current_medication = params[:customer][:current_medication]
+			  cust.entered_by = current_user.id
+			  cust.store_id = current_user.store_id
+		      cust.save
+
+		    if cust.present?
 		      pres_old = PrescriptionSpectacleOld.new
 			  pres_old.customer_id = cust.id
 			  pres_old.old_rgt_sph_1  = params[:customer][:old_rgt_sph_1]
@@ -154,10 +141,7 @@ class CustomerController < ApplicationController
 			  pres_old.old_lft_cyl_2  = params[:customer][:old_lft_cyl_2]
 			  pres_old.old_lft_axix_2 = params[:customer][:old_lft_axix_2]
 			  pres_old.save
-
-		 end
-
-		if cust.present?
+		
 	       
 		      pres_new = PrescriptionSpectacleNew.new
 			  pres_new.customer_id = cust.id
@@ -175,8 +159,6 @@ class CustomerController < ApplicationController
 			  pres_new.new_lft_axix_2 = params[:customer][:new_lft_axix_2]
 			  pres_new.save
 
-		 end
-		if cust.present?
 			  pd = ProgressiveDetail.new
 			  pd.repd = params[:customer][:re_pd]
 	          pd.lepd = params[:customer][:le_pd]
@@ -185,8 +167,7 @@ class CustomerController < ApplicationController
 	          pd.customer_id = cust.id
 	          pd.save
 
-		end
-		if cust.present?
+
 			  recom = Recommendation.new
 			  recom.frame_recom = params[:customer][:rec_frame]
 	          recom.lens_recom = params[:customer][:rec_lense]
@@ -201,8 +182,7 @@ class CustomerController < ApplicationController
 	          recom.sunrx_fp = params[:customer][:fp_sun_rx]
 	          recom.customer_id = cust.id
 	          recom.save
-	      end
-	     if cust.present?
+
 			  adinfo = AdditionalInfo.new
 			  adinfo.optomentrist_note = params[:customer][:opt_note]
 	          adinfo.remark = params[:customer][:remark]
@@ -216,15 +196,14 @@ class CustomerController < ApplicationController
 	          adinfo.singature = params[:customer][:singature]
 	          adinfo.customer_id = cust.id
 	          adinfo.save
-	      end
+	        end
+	    end
 
-	    respond_to do |format|
+	  respond_to do |format|
 	      if cust.present?
 	         format.html { redirect_to({:action => :index}, {:notice => 'Customer was successfully created.'}) }
 	      end
-	    end
-	 end
-
+	  end
   end
 
   def edit

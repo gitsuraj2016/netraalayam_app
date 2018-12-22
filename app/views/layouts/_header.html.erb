@@ -108,7 +108,7 @@
         </a>
       </li>
       <li>
-        <a href="<%= products_path %>">
+        <a href="<%#= products_path %>">
           <i class="fa fa-archive"></i>
           <span>Manage Product</span>
         </a>
@@ -139,13 +139,14 @@
           <span>Manage Role</span>
         </a>
       </li>
+      <% end %>
       <li>
       <a href="<%= report_index_path %>">
         <i class="fa fa-bar-chart"></i>
         <span>Manage Report</span>
       </a>
       </li>
-       <% end %>
+       
     </ul>
   </section>
   <!-- /.sidebar -->

@@ -120,26 +120,26 @@
         </a>
       </li>
       <li>
-        <a href="<%= stores_path %>">
+        <a href="<%#= stores_path %>">
           <i class="fa fa-building"></i>
           <span>Manage Store</span>
         </a>
       </li>
       <% if current_user.role.name == "admin" %>
+      <% end %>
       <li>
-        <a href=" <%= member_index_path %>">
+        <a href=" <%#= member_index_path %>">
           <i class="fa fa-plus"></i>
           <span>Manage Mamber</span>
         </a>
       </li>
 
       <li>
-        <a href="<%= roles_path %>">
+        <a href="<%#= roles_path %>">
           <i class="fa fa-user"></i>
           <span>Manage Role</span>
         </a>
       </li>
-      <% end %>
       <li>
       <a href="<%= report_index_path %>">
         <i class="fa fa-bar-chart"></i>

@@ -16,8 +16,8 @@
        <table>
        <tr><td>
         <div class="field">
-          <%= form.label :product_name %>
-          <%= form.text_field :product_name , class: "form-control"%>
+          <label>Product</label>
+          <%= form.select(:product_id, options_for_select(@products.map{ |c| [c.name, c.id] },:selected => @frame.product_id),{},class: 'form-control') %>
         </div>
         </td>
         <td>

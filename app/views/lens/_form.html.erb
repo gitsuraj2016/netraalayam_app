@@ -14,8 +14,8 @@
 <div class="box-body">
   <div class="form-group">
   <div class="field">
-    <%= form.label :product_name %>
-    <%= form.text_field :product_name , class: "form-control"%>
+    <label>Product</label>
+    <%= form.select(:product_id, options_for_select(@products.map{ |c| [c.name, c.id] },:selected => @len.product_id),{},class: 'form-control') %>
   </div>
 
   <div class="field">
@@ -81,6 +81,11 @@
   <div class="field">
     <%= form.label :discount %>
     <%= form.text_field :discount ,class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.text_field :quantity , class: "form-control" %>
   </div>
 
   <div class="field">

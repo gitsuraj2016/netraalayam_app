@@ -1,0 +1,203 @@
+<%= form_with(model: sunglasse, local: true) do |form| %>
+  <% if sunglasse.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sunglasse.errors.count, "error") %> prohibited this frame from being saved:</h2>
+
+      <ul>
+      <% sunglasse.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="box-body">
+     <div class="form-group">
+       <table>
+       <tr><td>
+        <div class="field">
+          <label>Product</label>
+          <%= form.select(:product_id, options_for_select(@products.map{ |c| [c.name, c.id] },:selected => @sunglasse.product_id),{},class: 'form-control') %>
+        </div>
+        </td>
+        <td>
+
+        <div class="field">
+          <%= form.label :brand_name %>
+          <%= form.text_field :brand_name , class: "form-control"%>
+        </div>
+        </td></tr>
+        <tr>
+        <td>
+        <div class="field">
+          <%= form.label :frame_type %>
+          <%= form.text_field :frame_type , class: "form-control"%>
+        </div>
+        </td>
+        <td>
+        <div class="field">
+          <%= form.label :frame_shape %>
+          <%= form.text_field :frame_shape , class: "form-control"%>
+        </div>
+         </td>
+         </tr>
+         <tr>
+         <td>
+        <div class="field">
+          <%= form.label :model_no %>
+          <%= form.text_field :model_no , class: "form-control"%>
+        </div>
+         </td>
+         <td>
+        <div class="field">
+          <%= form.label :frame_size %>
+          <%= form.text_field :frame_size , class: "form-control"%>
+        </div>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <div class="field">
+          <%= form.label :bridge_size %>
+          <%= form.text_field :bridge_size , class: "form-control"%>
+        </div>
+       </td>
+       <td>
+        <div class="field">
+          <%= form.label :temple_size %>
+          <%= form.text_field :temple_size , class: "form-control"%>
+        </div>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <div class="field">
+          <%= form.label :eye_size %>
+          <%= form.text_field :eye_size , class: "form-control"%>
+        </div>
+         </td>
+         <td>
+        <div class="field">
+          <%= form.label :frame_color %>
+          <%= form.text_field :frame_color , class: "form-control" %>
+        </div>
+       </td>
+       </tr>
+       <tr>
+       <td>
+        <div class="field">
+          <%= form.label :glass_color %>
+          <%= form.text_field :glass_color , class: "form-control" %>
+        </div>
+        </td>
+        <td>
+        <div class="field">
+          <%= form.label :weight %>
+          <%= form.text_field :weight , class: "form-control"%>
+        </div>
+         </td>
+         </tr>
+         <tr>
+         <td>
+        <div class="field">
+          <%= form.label :frame_material %>
+          <%= form.text_field :frame_material , class: "form-control"%>
+        </div>
+        </td>
+        <td>
+        <div class="field">
+          <%= form.label :temple_material %>
+          <%= form.text_field :temple_material, class: "form-control" %>
+        </div>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <div class="field">
+          <%= form.label :collection %>
+          <%= form.text_field :collection , class: "form-control"%>
+        </div>
+        </td>
+        <td>
+        <div class="field">
+          <%= form.label :lens_material %>
+          <%= form.text_field :lens_material, class: "form-control" %>
+        </div>
+         </td>
+         </tr>
+         <tr>
+         <td>
+        <div class="field">
+          <%= form.label :gender %>
+          <%= form.text_field :gender ,class: "form-control" %>
+        </div>
+        </td>
+        <td>
+        <div class="field">
+          <%= form.label :height %>
+          <%= form.text_field :height , class: "form-control"%>
+        </div>
+        </td></tr>
+        <tr><td>
+
+        <div class="field">
+          <%= form.label :condition %>
+          <%= form.text_field :condition , class: "form-control"%>
+        </div>
+        </td>
+        <td>
+        <div class="field">
+          <%= form.label :temple_color %>
+          <%= form.text_field :temple_color , class: "form-control"%>
+        </div>
+        </td></tr> 
+        <tr><td>
+        <div class="field">
+          <%= form.label :no_s %>
+          <%= form.text_field :no_s , class: "form-control"%>
+        </div>
+        </td>
+        <td>
+
+        <div class="field">
+          <%= form.label :MRP %>
+          <%= form.text_field :MRP , class: "form-control"%>
+        </div>
+        </td></tr>
+        <tr><td>
+
+        <div class="field">
+          <%= form.label :NRP %>
+          <%= form.text_field :NRP , class: "form-control"%>
+        </div>
+        </td><td>
+
+        <div class="field">
+          <%= form.label :discount %>
+          <%= form.text_field :discount , class: "form-control" %>
+        </div>
+        </td></tr>
+        <tr><td>
+
+        <div class="field">
+         <label>Store</label>
+          <%= form.select(:store_id, options_for_select(@stores.map{ |c| [c.name, c.id] },:selected => @sunglasse.store_id),{},class: 'form-control') %>
+        </div>
+        <td>
+          <div class="field">
+          <%= form.label :quantity %>
+          <%= form.text_field :quantity , class: "form-control" %>
+        </div>
+        </td>
+        
+        </td></tr>
+        <tr><td>
+     
+         <div class="box-footer">
+           <%= form.submit "Submit", class: "btn btn-primary" %>
+        </div>
+        </td></tr>
+        </table>
+   </div>
+  </div>
+<% end %>

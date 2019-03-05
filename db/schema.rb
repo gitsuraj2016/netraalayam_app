@@ -99,6 +99,21 @@ ActiveRecord::Schema.define(version: 2018121418192051) do
     t.index ["store_id"], name: "index_frames_on_store_id"
   end
 
+  create_table "inventory_items", force: :cascade do |t|
+    t.bigint "frame_id"
+    t.bigint "len_id"
+    t.bigint "sunglasse_id"
+    t.string "inventory_type"
+    t.string "quantity"
+    t.boolean "barcode_status"
+    t.string "barcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["frame_id"], name: "index_inventory_items_on_frame_id"
+    t.index ["len_id"], name: "index_inventory_items_on_len_id"
+    t.index ["sunglasse_id"], name: "index_inventory_items_on_sunglasse_id"
+  end
+
   create_table "invoices", force: :cascade do |t|
     t.decimal "amount", precision: 15, scale: 2, default: "0.0"
     t.string "company"
@@ -136,6 +151,7 @@ ActiveRecord::Schema.define(version: 2018121418192051) do
     t.bigint "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "product_id"
     t.index ["store_id"], name: "index_lens_on_store_id"
   end
 
@@ -265,6 +281,39 @@ ActiveRecord::Schema.define(version: 2018121418192051) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sunglasses", force: :cascade do |t|
+    t.bigint "product_id"
+    t.string "brand_name"
+    t.string "frame_type"
+    t.string "frame_shape"
+    t.string "model_no"
+    t.string "frame_size"
+    t.string "bridge_size"
+    t.string "temple_size"
+    t.string "eye_size"
+    t.string "frame_color"
+    t.string "glass_color"
+    t.string "weight"
+    t.string "frame_material"
+    t.string "temple_material"
+    t.string "collection"
+    t.string "lens_material"
+    t.string "gender"
+    t.string "height"
+    t.string "condition"
+    t.string "temple_color"
+    t.string "no_s"
+    t.decimal "MRP", precision: 8, scale: 2
+    t.decimal "NRP", precision: 8, scale: 2
+    t.decimal "discount", precision: 8, scale: 2
+    t.integer "quantity"
+    t.bigint "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_sunglasses_on_product_id"
+    t.index ["store_id"], name: "index_sunglasses_on_store_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -283,6 +332,9 @@ ActiveRecord::Schema.define(version: 2018121418192051) do
   add_foreign_key "additional_infos", "customers"
   add_foreign_key "customers", "stores"
   add_foreign_key "frames", "stores"
+  add_foreign_key "inventory_items", "frames"
+  add_foreign_key "inventory_items", "lens"
+  add_foreign_key "inventory_items", "sunglasses", column: "sunglasse_id"
   add_foreign_key "lens", "stores"
   add_foreign_key "order_details", "orders"
   add_foreign_key "orders", "customers"
@@ -292,4 +344,6 @@ ActiveRecord::Schema.define(version: 2018121418192051) do
   add_foreign_key "prescription_spectacles", "customers"
   add_foreign_key "progressive_details", "customers"
   add_foreign_key "recommendations", "customers"
+  add_foreign_key "sunglasses", "products"
+  add_foreign_key "sunglasses", "stores"
 end

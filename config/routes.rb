@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   
   resources :lens
-  
+  resources :sunglasses
   resources :frames
   resources :products
   resources :employees

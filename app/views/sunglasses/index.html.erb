@@ -1,0 +1,112 @@
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+
+    <%= render 'layouts/header' %>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Dashboard
+          <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li class="active">
+            <a href="#">
+              <i class="fa fa-home"></i>
+              Home Page</a>
+            </li>
+          </ol>
+        </section>
+        <section class="content">
+          <div class="col-md-12">
+            <div class="box">
+              <div class="box-header with-border">
+                
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <table class="table table-bordered table-hover">
+                  <tr>
+                    <th>Product name</th>
+                    <th>Brand name</th>
+                    <th>Frame type</th>
+                    <th>Frame shape</th>
+                    <th>Model no</th>
+                    <!-- <th>Frame size</th>
+                    <th>Bridge size</th> -->
+                    <!-- <th>Temple size</th> -->
+
+                    <th>Eye size</th>
+                    <th>Frame color</th>
+                    <th>Glass color</th>
+                    <!-- <th>Weight</th>
+                    <th>Frame material</th>
+                    <th>Temple material</th>
+                    <th>Collection</th>
+                    <th>Lens material</th>
+                    <th>Gender</th>
+                    <th>Height</th>
+                    <th>Condition</th>
+                    <th>Temple color</th>
+                    <th>No s</th>
+                    <th>Mrp</th>
+                    <th>Nrp</th>
+                    <th>Discount</th> -->
+                    <th>Store</th>
+                    <th>Quantity</th>
+                    
+                    <th>
+                      <i class="ion ion-edit"></i>
+                    </th>
+                    <th>
+                      <i class="ion ion-trash-b"></i>
+                    </th>
+                  </tr>
+                  <% @sunglasses.each do |frame| %>
+                  <tr>
+                     <td><%= frame.product ? frame.product.name : '' %></td>
+                    <td><%= frame.brand_name %></td>
+                    <td><%= frame.frame_type %></td>
+                    <td><%= frame.frame_shape %></td>
+                    <td><%= frame.model_no %></td>
+                    <!-- <td><%= frame.frame_size %></td> -->
+                    <td><%= frame.bridge_size %></td>
+                    <!-- <td><%= frame.temple_size %></td>
+                    <td><%= frame.eye_size %></td> -->
+                    <td><%= frame.frame_color %></td>
+                    <td><%= frame.glass_color %></td>
+                    <!-- <td><%= frame.weight %></td>
+                    <td><%= frame.frame_material %></td>
+                    <td><%= frame.temple_material %></td>
+                    <td><%= frame.collection %></td>
+                    <td><%= frame.lens_material %></td>
+                    <td><%= frame.gender %></td>
+                    <td><%= frame.height %></td>
+                    <td><%= frame.condition %></td>
+                    <td><%= frame.temple_color %></td>
+                    <td><%= frame.no_s %></td>
+                    <td><%= frame.MRP %></td>
+                    <td><%= frame.NRP %></td>
+                    <td><%= frame.discount %></td> -->
+                    <td><%= frame.store.name %></td>
+                    <td><%= frame.quantity %></td>
+
+                    <td><%= link_to "", edit_sunglass_path(frame), { class: "ion ion-edit"} %></td>
+                    <td>
+                      <%= link_to frame, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                      <i class="ion ion-trash-b"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <% end %>
+                </table>
+              </div>
+            </div>
+            <!-- /.box -->
+          </div>
+          <br>
+        </section>
+      </div>
+    </div>
+  </body>

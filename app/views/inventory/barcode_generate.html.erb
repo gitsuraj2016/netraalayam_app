@@ -30,7 +30,8 @@
                         
                         <div class="form-group">
                           <label>Select Product </label>
-                          <%= f.select(:pid, options_for_select(@frames.map{ |c| [c.product ? c.product.name : '', c.id] }),{},class: 'form-control', id: 'frame_id') %>
+                           <%= f.select(:inventory_item_id, options_for_select(@inventoryitems.map{ |c| [c.inventory_type, c.id] }),{},class: 'form-control') %>
+                         
                           
                         </div>
                         <div class="form-group">

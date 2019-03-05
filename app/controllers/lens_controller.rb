@@ -16,20 +16,22 @@ class LensController < ApplicationController
   def new
     @len = Len.new
     @stores = Store.all
+    @products = Product.all
   end
 
   # GET /lens/1/edit
   def edit
     @stores = Store.all
+    @products = Product.all
   end
 
   # POST /lens
   # POST /lens.json
   def create
     @len = Len.new(len_params)
-    create_item_data(@len)
     respond_to do |format|
       if @len.save
+        create_item_data(@len)
         format.html { redirect_to({:action => :index}, {:notice => 'Lens was successfully created.'}) }
         # format.html { redirect_to @len, notice: 'Len was successfully created.' }
         format.json { render :show, status: :created, location: @len }
@@ -41,9 +43,10 @@ class LensController < ApplicationController
   end
 
   def create_item_data(lens)
-     item =  Item.new
-     item.product_type = "lense"
-     item.product_id =  lens.id
+     item =  InventoryItem.new
+     item.inventory_type = "lense"
+     item.len_id =  lens.id
+     item.quantity = lens.quantity
      item.barcode_status = false
      item.save
   end
@@ -81,6 +84,6 @@ class LensController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def len_params
-      params.require(:len).permit(:product_name, :brand_name, :lens_type, :coatings1, :coatings2, :coatings3, :coatings4, :coatings5, :material, :power_range, :no_s, :MRP, :NRP, :discount, :store_id)
+      params.require(:len).permit(:product_id,:brand_name, :lens_type, :coatings1, :coatings2, :coatings3, :coatings4, :coatings5, :material, :power_range, :no_s, :MRP, :NRP, :discount, :quantity, :store_id)
     end
 end

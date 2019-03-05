@@ -11,11 +11,12 @@ class InventoryController < ApplicationController
   def index
   	   @frame = Frame.all
   	   @len = Len.all
+       @sunglasse = Sunglasse.all
   end
 
   def barcode_generate
 
-  	  @frames = Frame.all
+  	  @inventoryitems = InventoryItem.all
       @barcode_for_html = '';
   	  # @barcode = Barby::Code128B.new('000000000000')
      #  @barcode_for_html = Barby::HtmlOutputter.new(@barcode)

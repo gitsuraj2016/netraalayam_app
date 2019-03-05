@@ -28,6 +28,14 @@
               <div class="box-header with-border">
                 <h3 class="box-title">Lens (<%= @len.count if @len.present? %>)</h3>
                 <%= link_to 'New Lens', new_len_path , { class: "btn btn-primary newAddBtn"}%>
+                 <%= link_to 'Lens', lens_path , { class: "btn btn-primary newAddBtn"}%>
+
+              </div>
+
+              <div class="box-header with-border">
+                <h3 class="box-title">Sunglasse (<%= @sunglasse.count if @sunglasse.present? %>)</h3>
+                <%= link_to 'New Sunglasse', new_sunglass_path , { class: "btn btn-primary newAddBtn"}%>
+                <%= link_to 'Sunglasses', sunglasses_path , { class: "btn btn-primary newAddBtn"}%>
 
               </div>
 

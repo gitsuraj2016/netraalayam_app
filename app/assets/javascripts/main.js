@@ -64,25 +64,25 @@ $(document).ready(function(){
 		var rows = $('.item-row');
 		$("#modal_tbody").empty();
 
-		for (i = 0; i < rows.length; i++){
-			var row = rows[i];
-			var name = $(row).find(".item_name").val();
-			$('#modal_tbody').append('<tr class="modal-item-row"></tr>');
-			$('.modal-item-row:last').append('<td>' + name + '</td>');
+		// for (i = 0; i < rows.length; i++){
+		// 	var row = rows[i];
+		// 	var name = $(row).find(".item_name").val();
+		// 	$('#modal_tbody').append('<tr class="modal-item-row"></tr>');
+		// 	$('.modal-item-row:last').append('<td>' + name + '</td>');
 
-			var desc = $(row).find(".item_desc").val();
-			$('.modal-item-row:last').append('<td>' + desc + '</td>');
+		// 	var desc = $(row).find(".item_desc").val();
+		// 	$('.modal-item-row:last').append('<td>' + desc + '</td>');
 
-			var cost = $(row).find(".cost").val();
-			$('.modal-item-row:last').append('<td>' + cost + '</td>');
+		// 	var cost = $(row).find(".cost").val();
+		// 	$('.modal-item-row:last').append('<td>' + cost + '</td>');
 
-			var qty = $(row).find(".qty").val();
-			$('.modal-item-row:last').append('<td>' + qty + '</td>');
+		// 	var qty = $(row).find(".qty").val();
+		// 	$('.modal-item-row:last').append('<td>' + qty + '</td>');
 
-			var price = $(row).find(".price").text();
-			var curr = $('#invoice_currency').val();
-			$('.modal-item-row:last').append('<td>' + price + ' ' + '<span>' + curr + '</span></td>');
-		}
+		// 	var price = $(row).find(".price").text();
+		// 	var curr = $('#invoice_currency').val();
+		// 	$('.modal-item-row:last').append('<td>' + price + ' ' + '<span>' + curr + '</span></td>');
+		// }
 
 	});
 });

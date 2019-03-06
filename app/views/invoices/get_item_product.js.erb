@@ -1,5 +1,5 @@
 var pro_des = '<%= @product_desc %>';
 var item_cost = '<%= @unit_price %>';
-
-$('#product_des1').val(pro_des);
-$('#item1_cost').val(item_cost);
+var id = '<%=@item%>';
+$('#product_des'+ id).val(pro_des);
+$('#item'+id+'_cost').val(item_cost);

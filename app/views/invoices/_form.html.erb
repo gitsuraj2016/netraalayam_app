@@ -89,24 +89,24 @@
           
             <tr class="item-row">
               <td><input class="form-control item_name" id="item_id2" value="" /></td>
-              <td><input class="form-control item_desc" value="Description #2" /></td>
-              <td><input class="form-control cost" id="item2_cost" value="" /></td>
+              <td><input class="form-control item_desc" id="product_des2" value=""  readonly/></td>
+              <td><input class="form-control cost" id="item2_cost" value="" readonly/></td>
               <td><input class="form-control qty" id="item2_qty" value="" /></td>
               <td class="price_td"><span class="price"></span><span class="subtotal_currency"></span></td>
               <td class="delete_td"><a class="delete" href="javascript:;" title="Remove row"><span class="btn btn-danger">x</span></a></td>
             </tr>
             <tr class="item-row">
               <td><input class="form-control item_name" id="item_id3" value="" /></td>
-              <td><input class="form-control item_desc" value="Description #2" /></td>
-              <td><input class="form-control cost" id="item3_cost" value="" /></td>
+              <td><input class="form-control item_desc" id="product_des3" value="" readonly/></td>
+              <td><input class="form-control cost" id="item3_cost" value="" readonly/></td>
               <td><input class="form-control qty" id="item3_qty" value="" /></td>
               <td class="price_td"><span class="price"></span><span class="subtotal_currency"></span></td>
               <td class="delete_td"><a class="delete" href="javascript:;" title="Remove row"><span class="btn btn-danger">x</span></a></td>
             </tr>
             <tr class="item-row">
               <td><input class="form-control item_name" id="item_id4" value="" /></td>
-              <td><input class="form-control item_desc" value="Description #2" /></td>
-              <td><input class="form-control cost" id="item4_cost" value="" /></td>
+              <td><input class="form-control item_desc" id="product_des4" value="" readonly/></td>
+              <td><input class="form-control cost" id="item4_cost" value=""  readonly/></td>
               <td><input class="form-control qty" id="item4_qty" value="" /></td>
               <td class="price_td"><span class="price"></span><span class="subtotal_currency"></span></td>
               <td class="delete_td"><a class="delete" href="javascript:;" title="Remove row"><span class="btn btn-danger">x</span></a></td>
@@ -221,7 +221,55 @@
             $.ajax({
             url: "get_item_product",
             method: "GET",  
-            data: {id: id },
+            data: {id: id, item: '1' },
+            error: function (xhr, status, error) {
+              console.error('AJAX Error: ' + status + error);
+            },
+            success: function (data) {
+              // alert(JSON.stringify(data.frame.id));
+               console.log(JSON.stringify(data));
+            }
+          });
+     });
+     $("#item_id2").on("input",function() {
+          var id = this.value ;
+         // alert(cust_id);
+            $.ajax({
+            url: "get_item_product",
+            method: "GET",  
+            data: {id: id,item: '2'},
+            error: function (xhr, status, error) {
+              console.error('AJAX Error: ' + status + error);
+            },
+            success: function (data) {
+              // alert(JSON.stringify(data.frame.id));
+               console.log(JSON.stringify(data));
+            }
+          });
+     });
+     $("#item_id3").on("input",function() {
+          var id = this.value ;
+         // alert(cust_id);
+            $.ajax({
+            url: "get_item_product",
+            method: "GET",  
+            data: {id: id,item: '3'},
+            error: function (xhr, status, error) {
+              console.error('AJAX Error: ' + status + error);
+            },
+            success: function (data) {
+              // alert(JSON.stringify(data.frame.id));
+               console.log(JSON.stringify(data));
+            }
+          });
+     });
+     $("#item_id4").on("input",function() {
+          var id = this.value ;
+         // alert(cust_id);
+            $.ajax({
+            url: "get_item_product",
+            method: "GET",  
+            data: {id: id,item: '4'},
             error: function (xhr, status, error) {
               console.error('AJAX Error: ' + status + error);
             },

@@ -49,6 +49,7 @@ class InvoicesController < ApplicationController
     inverntory_item = InventoryItem.where(:id=> params[:id] ).first
     @product_desc = ''
     @unit_price = ''
+    @item = params[:item]
     if inverntory_item
       if inverntory_item.inventory_type == "frame"
         @product_desc = inverntory_item.frame.product.description
@@ -119,6 +120,7 @@ class InvoicesController < ApplicationController
        input_advance = params[:input_advance]
 
        itemArr = [itemid_1,itemid_2,itemid_3,itemid_4]
+       byebug
 
       if custid.present?
          nord = Order.new 

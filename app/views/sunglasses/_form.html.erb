@@ -20,6 +20,13 @@
           <%= form.select(:product_id, options_for_select(@products.map{ |c| [c.name, c.id] },:selected => @sunglasse.product_id),{},class: 'form-control') %>
         </div>
         </td>
+
+         <td>
+        <div class="field">
+          <label>Sunglasse Name</label>
+          <%= form.text_field :product_name , class: "form-control"%>
+        </div>
+        </td>
         <td>
 
         <div class="field">

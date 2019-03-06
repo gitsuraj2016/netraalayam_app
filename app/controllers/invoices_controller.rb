@@ -45,6 +45,29 @@ class InvoicesController < ApplicationController
     end
   end
 
+  def get_item_product
+    inverntory_item = InventoryItem.where(:id=> params[:id] ).first
+    @product_desc = ''
+    @unit_price = ''
+    if inverntory_item
+      if inverntory_item.inventory_type == "frame"
+        @product_desc = inverntory_item.frame.product.description
+        @unit_price = inverntory_item.frame.MRP.to_f
+      elsif inverntory_item.inventory_type == "lense"
+        @product_desc = inverntory_item.len.product.description
+        @unit_price = inverntory_item.len.MRP.to_f
+      elsif inverntory_item.inventory_type == "sunglasse"
+        @product_desc = inverntory_item.sunglasse.product.description
+        @unit_price = inverntory_item.sunglasse.MRP.to_f
+      end
+    else  
+    @erorMsg = "Customer Not Found."  
+    end
+    respond_to do |format|
+       format.js { }
+     end
+  end
+
   def get_cust_data
 
     cust = Customer.where(:id=> params[:custid]).first

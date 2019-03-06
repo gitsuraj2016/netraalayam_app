@@ -56,7 +56,7 @@
 
           <div class="col-md-12"></div>
           <div class="form-group">
-            <div class="col-md-8 invoice_space"><label>Amount due </label><span class="due advamt" style="margin-left: 20px;"></span><span class="subtotal_currency"></span></div>
+            <div class="col-md-8 invoice_space"><label>Amount due </label><span class="due advamt" style="margin-left: 10px;"></span><span class="subtotal_currency"></span></div>
             <!-- <div class="col-md-8 invoice_space bold" style="text-align:right; padding-top:7px"></div> -->
           </div>
         </form>
@@ -80,10 +80,10 @@
           <tbody>
             <tr class="item-row">
               <td><input class="form-control item_name" id="item_id1" value="" /></td>
-              <td><input class="form-control item_desc" value="Description" /></td>
-              <td><input class="form-control cost" id="item1_cost" value="" /></td>
+              <td><input class="form-control item_desc" id="product_des1" value=""  readonly /></td>
+              <td><input class="form-control cost" id="item1_cost" value="" readonly/></td>
               <td><input class="form-control qty" id="item1_qty" value="" /></td>
-              <td class="price_td"><span class="price"></span><span class="subtotal_currency"></span></td>
+              <td class="price_td"><span class="price" id="item_price1"></span><span class="subtotal_currency"></span></td>
               <td class="delete_td"><a class="delete" href="javascript:;" title="Remove row"><span class="btn btn-danger">x</span></a></td>
             </tr>
           
@@ -130,11 +130,11 @@
             </tr>
             <tr>
               <th>Tax:</th>
-              <td><input id="9" class="form-control input_tax" value="0.00" /></td>
+              <td><input id="9" class="form-control input_tax" value="" /></td>
             </tr>
             <tr>
               <th>Discount:</th>
-              <td><input id="99" class="form-control input_discount" value="0.00" /></td>
+              <td><input id="99" class="form-control input_discount" value="" /></td>
             </tr>
             <tr>
               <th>Total:</th>
@@ -143,7 +143,7 @@
             </tr>
             <tr>
               <th>Advance:</th>
-              <td><input id="89" class="form-control input_advance" value="0.00" /></td>
+              <td><input id="89" class="form-control input_advance" value="" /></td>
             </tr>
             <tr>
               <th>Payment Type</th>
@@ -214,6 +214,24 @@
             }
           });
      });
+
+     $("#item_id1").on("input",function() {
+          var id = this.value ;
+         // alert(cust_id);
+            $.ajax({
+            url: "get_item_product",
+            method: "GET",  
+            data: {id: id },
+            error: function (xhr, status, error) {
+              console.error('AJAX Error: ' + status + error);
+            },
+            success: function (data) {
+              // alert(JSON.stringify(data.frame.id));
+               console.log(JSON.stringify(data));
+            }
+          });
+     });
+
     $("#submit_invoice").click(function(){
       var item1 = $('#item_id1').val();
       var item2 = $('#item_id2').val();

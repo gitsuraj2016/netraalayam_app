@@ -19,7 +19,7 @@ function update_balance() {
 	$('.due').html(total);
 }
 function update_balance_discount() {
-	var total = Number($('#invoice_total').html()) - Number($('#99').val());
+	var total = Number($('#subtotal').html()) - Number($('#99').val());
 	total = total.toFixed(2);
 
 	$('.due').html(total);

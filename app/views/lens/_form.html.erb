@@ -18,6 +18,13 @@
     <%= form.select(:product_id, options_for_select(@products.map{ |c| [c.name, c.id] },:selected => @len.product_id),{},class: 'form-control') %>
   </div>
 
+   <td>
+        <div class="field">
+          <label>Lens Name</label>
+          <%= form.text_field :product_name , class: "form-control"%>
+        </div>
+        </td>
+
   <div class="field">
     <%= form.label :brand_name %>
     <%= form.text_field :brand_name , class: "form-control"%>

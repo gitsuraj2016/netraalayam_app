@@ -48,6 +48,7 @@ class LensController < ApplicationController
      item.len_id =  lens.id
      item.quantity = lens.quantity
      item.barcode_status = false
+     item.store_id = lens.store_id
      item.save
   end
 
@@ -84,6 +85,6 @@ class LensController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def len_params
-      params.require(:len).permit(:product_id,:brand_name, :lens_type, :coatings1, :coatings2, :coatings3, :coatings4, :coatings5, :material, :power_range, :no_s, :MRP, :NRP, :discount, :quantity, :store_id)
+      params.require(:len).permit(:product_name,:product_id,:brand_name, :lens_type, :coatings1, :coatings2, :coatings3, :coatings4, :coatings5, :material, :power_range, :no_s, :MRP, :NRP, :discount, :quantity, :store_id)
     end
 end

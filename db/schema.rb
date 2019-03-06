@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 2018121418192051) do
     t.bigint "frame_id"
     t.bigint "len_id"
     t.bigint "sunglasse_id"
+    t.bigint "store_id"
     t.string "inventory_type"
     t.string "quantity"
     t.boolean "barcode_status"
@@ -111,6 +112,7 @@ ActiveRecord::Schema.define(version: 2018121418192051) do
     t.datetime "updated_at", null: false
     t.index ["frame_id"], name: "index_inventory_items_on_frame_id"
     t.index ["len_id"], name: "index_inventory_items_on_len_id"
+    t.index ["store_id"], name: "index_inventory_items_on_store_id"
     t.index ["sunglasse_id"], name: "index_inventory_items_on_sunglasse_id"
   end
 
@@ -283,6 +285,7 @@ ActiveRecord::Schema.define(version: 2018121418192051) do
 
   create_table "sunglasses", force: :cascade do |t|
     t.bigint "product_id"
+    t.string "product_name"
     t.string "brand_name"
     t.string "frame_type"
     t.string "frame_shape"
@@ -334,6 +337,7 @@ ActiveRecord::Schema.define(version: 2018121418192051) do
   add_foreign_key "frames", "stores"
   add_foreign_key "inventory_items", "frames"
   add_foreign_key "inventory_items", "lens"
+  add_foreign_key "inventory_items", "stores"
   add_foreign_key "inventory_items", "sunglasses", column: "sunglasse_id"
   add_foreign_key "lens", "stores"
   add_foreign_key "order_details", "orders"

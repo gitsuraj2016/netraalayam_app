@@ -2,6 +2,7 @@ class CreateSunglasses < ActiveRecord::Migration[5.2]
   def change
     create_table :sunglasses do |t|
       t.references :product, foreign_key: true
+      t.string :product_name
       t.string :brand_name
       t.string :frame_type
       t.string :frame_shape

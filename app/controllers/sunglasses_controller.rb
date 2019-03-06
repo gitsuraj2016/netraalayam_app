@@ -28,7 +28,7 @@ class SunglassesController < ApplicationController
   # POST /frames
   # POST /frames.json
   def create
-    @sunglasse = Sunglasse.new(frame_params)
+    @sunglasse = Sunglasse.new(sunglasse_params)
 
     respond_to do |format|
       if @sunglasse.save
@@ -49,6 +49,7 @@ class SunglassesController < ApplicationController
      item.sunglasse_id =  sunglasse.id
      item.quantity = sunglasse.quantity
      item.barcode_status = false
+     item.store_id = sunglasse.store_id
      item.save
   end
 
@@ -85,6 +86,6 @@ class SunglassesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sunglasse_params
-      params.require(:sunglasse).permit(:brand_name, :frame_type, :frame_shape, :model_no, :frame_size, :bridge_size, :temple_size, :eye_size, :frame_color, :glass_color, :weight, :frame_material, :temple_material, :collection, :lens_material, :gender, :height, :condition, :temple_color, :no_s, :MRP, :NRP, :discount, :store_id,:quantity, :product_id)
+      params.require(:sunglasse).permit(:product_name,:brand_name, :frame_type, :frame_shape, :model_no, :frame_size, :bridge_size, :temple_size, :eye_size, :frame_color, :glass_color, :weight, :frame_material, :temple_material, :collection, :lens_material, :gender, :height, :condition, :temple_color, :no_s, :MRP, :NRP, :discount, :store_id,:quantity, :product_id)
     end
 end

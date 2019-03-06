@@ -15,18 +15,27 @@ class InventoryController < ApplicationController
   end
 
   def barcode_generate
-
-  	  @inventoryitems = InventoryItem.all
+  	  @frames = InventoryItem.where(:inventory_type => 'frame', :store_id => current_user.store_id, :barcode_status => false).all
+      @lens = InventoryItem.where(:inventory_type => 'lense', :store_id => current_user.store_id, :barcode_status => false).all
+      @sunglasse = InventoryItem.where(:inventory_type => 'sunglasse', :store_id => current_user.store_id, :barcode_status => false).all
       @barcode_for_html = '';
   	  # @barcode = Barby::Code128B.new('000000000000')
      #  @barcode_for_html = Barby::HtmlOutputter.new(@barcode)
       # bbcode
   end
   def get_frame_data
-
-     @frame = Frame.where(:id=> params[:frameid]).first
-     @fid = @frame.id;
+    
+    inventory_item = InventoryItem.where(:id=> params[:frameid]).first
+     if(params[:inverory_type] == "frame")
+     @frame = inventory_item.frame
+    elsif (params[:inverory_type] == "lense")
+      @frame = inventory_item.len
+    elsif (params[:inverory_type] == "sunglasse")
+     @frame = inventory_item.sunglasse
+   end
+     @fid = @frame.id
      @fname = @frame.product.name
+     @product_name = @frame.product_name
      @quantity = @frame.quantity
      @mrp = @frame.MRP     
      respond_to do |format|
@@ -34,15 +43,15 @@ class InventoryController < ApplicationController
      end
   end
   def generate_barcode
-
-      
-      @pid = params[:BarCode][:pid]
-      @pname  = params[:BarCode][:pname]
+      @pid = params[:BarCode][:inverory_id]
+      @pname  = params[:BarCode][:product_name]
       @prate = params[:BarCode][:prate]
-      @pqt = params[:BarCode][:quantity]
-
+      @pqt = params[:BarCode][:quantity] 
+      inventory_item = InventoryItem.where(:id=> @pid ).first
+      @produc_name =
       @barcode = Barby::Code128B.new(@pid)
       @barcode_for_html = Barby::HtmlOutputter.new(@barcode)
+      inventory_item.update_attribute(:barcode_status, true)
 
      respond_to do |format|  
             format.js

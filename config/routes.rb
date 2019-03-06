@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   post 'customer/create_customer'
 
   get 'invoices/get_cust_data'
+  get 'invoices/get_item_product'
   post 'invoices/generate_cust_invoice'
 
   get 'report/show_order_data'

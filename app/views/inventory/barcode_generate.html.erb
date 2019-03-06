@@ -27,24 +27,41 @@
                 <H1>BarCode Generator</H1>
                     <%= form_for :BarCode, url: "generate_barcode",:remote=>true do |f| %>
                       <div class="box-body">
-                        
-                        <div class="form-group">
-                          <label>Select Product </label>
-                           <%= f.select(:inventory_item_id, options_for_select(@inventoryitems.map{ |c| [c.inventory_type, c.id] }),{},class: 'form-control') %>
-                         
-                          
+                      <div class="form-group">
+                      <label>Select Product </label>
+                       <select id="slecte_inventory_type">
+                        <option value="frame">Frame</option>
+                        <option value="lense">Lens</option>
+                        <option value="sunglasse">Sunglass</option>
+                       </select>
+                     
+                      
+                    </div>
+                        <div class="form-group select_frame_name">
+                          <label>Select Frame Name </label>
+                          <%= f.select(:pid, options_for_select(@frames.map{ |c| [c.frame.product_name, c.id] }),{ include_blank: true },class: 'form-control frame_id') %>
+                        </div>
+                        <div class="form-group select_len_name">
+                          <label>Select Lens Name </label>
+                          <%= f.select(:pid, options_for_select(@lens.map{ |c| [c.len.product_name, c.id] }),{ include_blank: true },class: 'form-control frame_id') %>
+                        </div>
+                        <div class="form-group select_sunglasse_name">
+                          <label>Select Sunglasse Name </label>
+                          <%= f.select(:pid, options_for_select(@sunglasse.map{ |c| [c.sunglasse.product_name, c.id] }),{ include_blank: true },class: 'form-control frame_id') %>
                         </div>
                         <div class="form-group">
                           <label>Product Name</label>
-                          <%= f.text_field :pname, autocomplete: "off", placeholder: "Product Name", class: "form-control", required: true  %>
+                          <%= f.text_field :pname, autocomplete: "off", placeholder: "Product Name", class: "form-control", required: true, readonly: 'readonly'  %>
+                          <%= f.hidden_field :inverory_id, value: '' %>
+                          <%= f.hidden_field :product_name, value: '' %>
                         </div>
                         <div class="form-group">
                           <label>Rate </label>
-                          <%= f.text_field :prate, autocomplete: "off", placeholder: "Enter Rate", class: "form-control" %>
+                          <%= f.text_field :prate, autocomplete: "off", placeholder: "Enter Rate", readonly: 'readonly', class: "form-control"   %>
                         </div>
                         <div class="form-group">
                           <label>BarCodes Quantity</label>
-                          <%= f.text_field :quantity, autocomplete: "off", placeholder: "Enter Barcode Quantity", class: "form-control" %>
+                          <%= f.text_field :quantity, autocomplete: "off", placeholder: "Enter Barcode Quantity", class: "form-control",  readonly: 'readonly' %>
                         </div>
                       </div>
                       <!-- /.box-body -->
@@ -75,20 +92,45 @@
   </body>
   <script type="text/javascript">
     $( document ).ready(function() {
-      $('#frame_id').on('change', function() {
+      $(".select_len_name").hide();
+      $(".select_sunglasse_name").hide();
+      $('.frame_id').on('change', function() {
+        console.log(this)
          var fr_id = this.value ;
+         var type  = $("#slecte_inventory_type").val();
+         $("#BarCode_inverory_id").val(fr_id)
             $.ajax({
             url: "get_frame_data",
             method: "GET",  
-            data: {frameid: fr_id },
+            data: {frameid: fr_id, inverory_type: type },
             error: function (xhr, status, error) {
               console.error('AJAX Error: ' + status + error);
             },
             success: function (data) {
-              alert(JSON.stringify(data.frame.id));
-              // console.log(response);
             }
           });
      });
+
+      $("#slecte_inventory_type").on('change', function(){
+         var type = this.value ;
+         if(type == 'frame'){
+          $(".select_frame_name").show();
+          $(".select_len_name").hide();
+          $(".select_sunglasse_name").hide();
+         }
+         else if(type == 'lense'){
+          $(".select_frame_name").hide();
+          $(".select_len_name").show();
+          $(".select_sunglasse_name").hide();
+         }
+         else if(type == 'sunglasse'){
+          $(".select_frame_name").hide();
+          $(".select_len_name").hide();
+          $(".select_sunglasse_name").show();
+         }
+        $('#BarCode_pname').val('');
+        $('#BarCode_prate').val('');
+        $('#BarCode_quantity').val('');
+      });
 });
   </script>

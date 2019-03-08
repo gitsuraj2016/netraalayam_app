@@ -147,7 +147,7 @@
             </tr>
             <tr>
               <th>Total:</th>
-              <td class="balance"><span class="due" id="invoice_total"></span><span class="subtotal_currency"></span></td>
+              <td class="balance"><span class="totalamount" id="invoice_total"></span><span class="subtotal_currency"></span></td>
               <%=f.hidden_field :amount, id: "invoice_total1" %>
             </tr>
             <tr>
@@ -247,6 +247,7 @@
       var invoice_total = $('#invoice_total').text();
       var input_advance = $('.input_advance').val();
       var custid = $('.cid').val();
+      var balance = $(".advamt").text();
 
         $.ajax({
             url: "generate_cust_invoice",
@@ -259,6 +260,7 @@
                      input_discount: input_discount,
                      invoice_total: invoice_total,
                      input_advance: input_advance,
+                     balance: balance
                   },
             error: function (xhr, status, error) {
               console.error('AJAX Error: ' + status + error);
@@ -282,7 +284,7 @@
         cols += '<td><input type="text" class="form-control" readonly  id="product_des'+ counter + '"/></td>';
         cols += '<td><input type="text" class="form-control itemcost" readonly id="item_cost'+ counter + '"/></td>';
         cols += '<td><input class="form-control qty qualitys" qel="'+counter+'"  id="item_qty'+ counter + '"/></td>';
-        cols += '<td><input class="form-control" readonly id="item_price'+ counter + '"/></td>'
+        cols += '<td><input class="form-control itemprices" readonly id="item_price'+ counter + '"/></td>'
         cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
         newRow.append(cols);
         $("table#items").append(newRow);
@@ -291,6 +293,7 @@
     $("table#items").on("click", ".ibtnDel", function (event) {
         $(this).closest("tr").remove();       
         counter -= 1
+        addtotal_details()
     });
 
     $("table#items").on("input", ".itemids", function (event) {
@@ -317,7 +320,24 @@
          var unitpric = $("#item_cost"+id).val()
          var total  = parseInt(unitpric) * parseInt(qty)
          $("#item_price"+id).val(total)
+         addtotal_details();
+         
+        
     });
+
+    function addtotal_details(){
+      var list = []
+         var rows = $('.item-rows');
+         for (i = 0; i < rows.length; i++){
+          var row = rows[i];
+          var itemprices = $(row).find(".itemprices").val();
+          list.push(itemprices)
+         }
+          sum = 0;
+          list.forEach(function(num){sum+=parseFloat(num) || 0;});
+          $("#subtotal").text(sum)
+          $(".totalamount").text(sum)
+    }
     
 
 

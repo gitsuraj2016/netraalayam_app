@@ -27,7 +27,39 @@
               </div>
               <!-- /.box-header -->
               <div class="box-body">
-                
+                 <table class="table table-bordered table-hover">
+                  <tr>
+                    <th>Customer</th>
+                    <th>Store</th>
+                    <th>SubTotal</th>
+                    <th>Tax Amount</th>
+                    <th>Discount Amount</th>
+                    <th>Total Amount</th>
+                    <th>Advance Amount</th>
+                    <th>Balance Amount</th> 
+                    <th>Payment Mode</th>
+                    <th>
+                      <i class="ion ion-edit"></i>
+                    </th>
+                  </tr>
+                  <% @orders.each do |order| %>
+                  <tr>
+                    <%customer = Customer.where(:id=>order.customer_id).last%>
+                     <td><%= customer.name%></td>
+                    <td><%= order.store.name %></td>
+                    <td><%= order.subtotal %></td>
+                    <td><%=order.tax_amt %></td>
+                    <td><%= order.discount_amt%></td>
+                    <td><%= order.total_amt %></td>
+                    <td><%= order.advance_amt %></td>
+                    <td><%= order.balance_amount %></td>
+                    <td><%= order.payment_mode %></td>
+
+                    <td><%= link_to "", edit_invoice_path(order), { class: "ion ion-edit"} %></td>
+
+                  </tr>
+                  <% end %>
+                </table>
               </div>
             </div>
             <!-- /.box -->

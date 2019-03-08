@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   get 'invoices/get_cust_data'
   get 'invoices/get_item_product'
+  get 'invoices/edit'
   post 'invoices/generate_cust_invoice'
 
   get 'report/show_order_data'
@@ -39,7 +40,8 @@ Rails.application.routes.draw do
 
 
 
-  resources :invoices, except: [:edit, :update, :destroy] do
+
+  resources :invoices, except: [:destroy] do
     collection do
       match 'search' => 'invoices#search', via: [:get, :post], as: :search
     end

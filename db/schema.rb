@@ -179,6 +179,7 @@ ActiveRecord::Schema.define(version: 2018121418192051) do
     t.bigint "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "balance_amount", precision: 8, scale: 2
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["store_id"], name: "index_orders_on_store_id"
   end

@@ -16,13 +16,13 @@ function update_balance() {
 	var total = Number($('#subtotal').html()) + Number($('#9').val());
 	total = total.toFixed(2);
 
-	$('.due').html(total);
+	$('.totalamount').html(total);
 }
 function update_balance_discount() {
 	var total = Number($('#subtotal').html()) - Number($('#99').val());
 	total = total.toFixed(2);
 
-	$('.due').html(total);
+	$('.totalamount').html(total);
 
 }
 function update_balance_advance() {

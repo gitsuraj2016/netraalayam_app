@@ -4,13 +4,19 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    # @search = Invoice.search(params[:q])
+      
+    @orders = Order.where(:store_id=>current_user.store_id)
     # @invoices = @search.result
   end
 
   def search
     index
     render :index
+  end
+
+    def edit
+     @custs = Customer.all
+     @invoice = Order.where(:id=>params[:id]).last
   end
 
   # GET /invoices/1
@@ -47,25 +53,24 @@ class InvoicesController < ApplicationController
 
   def get_item_product
     inverntory_item = InventoryItem.where(:id=> params[:id] ).first
-    @product_desc = ''
-    @unit_price = ''
-    @item = params[:item]
+    product_desc = ''
+    unit_price = ''
     if inverntory_item
       if inverntory_item.inventory_type == "frame"
-        @product_desc = inverntory_item.frame.product.description
-        @unit_price = inverntory_item.frame.MRP.to_f
+        product_desc = inverntory_item.frame.product.description
+        unit_price = inverntory_item.frame.MRP.to_f
+        remainqty = inverntory_item.quantity
       elsif inverntory_item.inventory_type == "lense"
-        @product_desc = inverntory_item.len.product.description
-        @unit_price = inverntory_item.len.MRP.to_f
+        product_desc = inverntory_item.len.product.description
+        unit_price = inverntory_item.len.MRP.to_f
       elsif inverntory_item.inventory_type == "sunglasse"
-        @product_desc = inverntory_item.sunglasse.product.description
-        @unit_price = inverntory_item.sunglasse.MRP.to_f
+        product_desc = inverntory_item.sunglasse.product.description
+        unit_price = inverntory_item.sunglasse.MRP.to_f
       end
     else  
     @erorMsg = "Customer Not Found."  
     end
-    render :json => {:product_desc => @product_desc, :unit_price=> @unit_price
-                    }.to_json
+    render :json => {:product_desc => product_desc, :unit_price=> unit_price}.to_json
   end
 
   def get_cust_data
@@ -96,8 +101,6 @@ class InvoicesController < ApplicationController
        
   end
   def generate_cust_invoice
-
-
        custid =  params[:custid]
        itemArr = params[:item_arr]
        subtotal = params[:subtotal]
@@ -105,79 +108,42 @@ class InvoicesController < ApplicationController
        input_discount  = params[:input_discount]
        invoice_total  = params[:invoice_total]
        input_advance = params[:input_advance]
-
-       
-
-       itemArr.each do |item|
-        byebug
-       end
-
-      # if custid.present?
-      #    nord = Order.new 
-      #    nord.delivery_date = 10.days.from_now.to_s
-      #    nord.subtotal  = subtotal
-      #    nord.tax_amt  = input_tax
-      #    nord.discount_amt  = input_discount
-      #    nord.total_amt  = invoice_total
-      #    nord.advance_amt = input_advance
-      #    nord.payment_mode = "Cash"
-      #    nord.customer_id = custid
-      #    nord.store_id = current_user.store_id
-      #    nord.save
-      #    if nord.present?
-      #       itemArr.each_with_index do  | inx,index |
-      #           if inx.present?
-      #              or_de = OrderDetail.new
-      #              if index == 0
-      #               or_de.item_id = itemid_1
-      #               or_de.quantity = item1_qty
-      #               or_de.price  = item1_cost
-      #               update_procust(itemid_1,item1_qty)
-      #              elsif index == 1
-      #               or_de.item_id = itemid_2
-      #               or_de.quantity = item2_qty
-      #               or_de.price  = item2_cost
-      #               update_procust(itemid_2,item2_qty)
-      #              elsif index == 2
-      #               or_de.item_id = itemid_3
-      #               or_de.quantity = item3_qty
-      #               or_de.price  = item3_cost
-      #               update_procust(itemid_2,item2_qty)
-      #              elsif index == 3
-      #               or_de.item_id = itemid_4
-      #               or_de.quantity = item4_qty
-      #               or_de.price  = item4_cost
-      #               update_procust(itemid_4,item3_qty)
-      #              end
-      #              or_de.order_id = nord.id
-      #              or_de.save
-      #           end
-      #       end
-      #    end
-      # end
-
-
+       balance = params[:balance]
+      if custid.present?
+         nord = Order.new 
+         nord.delivery_date = 10.days.from_now.to_s
+         nord.subtotal  = subtotal
+         nord.tax_amt  = input_tax
+         nord.discount_amt  = input_discount
+         nord.total_amt  = invoice_total
+         nord.advance_amt = input_advance
+         nord.payment_mode = "Cash"
+         nord.customer_id = custid
+         nord.balance_amount = balance
+         nord.store_id = current_user.store_id
+         nord.save
+         if nord.present?
+            itemArr.each do |item|
+              or_de = OrderDetail.new
+              or_de.item_id = item[1][:itemid]
+              or_de.quantity = item[1][:qty]
+              or_de.price  = item[1][:cost]
+              or_de.order_id = nord.id
+              or_de.save
+              update_procust(item[1][:itemid],item[1][:qty])
+           end
+         end
+      end
       render :json => {status: "success"}.to_json
-
   end
 
   def update_procust(pid, p_qnt)
-
-      frm = Frame.where(:id => pid).first
+      frm = InventoryItem.where(:id => pid).first
       if frm.present?
           fc_qny = frm.quantity
           frm.quantity = fc_qny.to_i - p_qnt.to_i
           frm.save
       end
-
-      len = Len.where(:id => pid).first
-      if len.present?
-          fc_qny = len.quantity
-          len.quantity = fc_qny - p_qnt
-          len.save
-      end
-
-
   end
 
 

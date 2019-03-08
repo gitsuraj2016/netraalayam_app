@@ -226,20 +226,20 @@
 
 
     $("#submit_invoice").click(function(){
-      var item1 = $('#item_id1').val();
-      var item2 = $('#item_id2').val();
-      var item3 = $('#item_id3').val();
-      var item4 = $('#item_id4').val();
 
-      var item1_cost = $('#item1_cost').val();
-      var item2_cost = $('#item2_cost').val();
-      var item3_cost = $('#item3_cost').val();
-      var item4_cost = $('#item4_cost').val();
-
-      var item1_qty = $('#item1_qty').val();
-      var item2_qty = $('#item2_qty').val();
-      var item3_qty = $('#item3_qty').val();
-      var item4_qty = $('#item4_qty').val();
+   var list = []
+   var rows = $('.item-rows');
+   for (i = 0; i < rows.length; i++){
+    listhash = {}
+    var row = rows[i];
+    var name = $(row).find(".itemids").val();
+    var cost = $(row).find(".itemcost").val();
+    var qtys = $(row).find(".qualitys").val();
+    listhash['itemid'] = name
+    listhash['qty'] = qtys
+    listhash['cost'] = cost
+    list.push(listhash)
+   }
 
       var subtotal = $('#subtotal').text();
       var input_tax = $('.input_tax').val();
@@ -253,18 +253,7 @@
             method: "POST",  
             data: {
                      custid: custid,
-                     item_id1: item1,
-                     item_id2: item2,
-                     item_id3: item3,
-                     item_id4: item4,
-                     item1_cost: item1_cost,
-                     item2_cost: item2_cost,
-                     item3_cost: item3_cost,
-                     item4_cost: item4_cost,
-                     item1_qty: item1_qty,
-                     item2_qty: item2_qty,
-                     item3_qty: item3_qty,
-                     item4_qty: item4_qty,
+                     item_arr: list,
                      subtotal: subtotal,
                      input_tax: input_tax,
                      input_discount: input_discount,
@@ -286,13 +275,13 @@
 
 
     $("#addrow").on("click", function () {
-        var newRow = $("<tr>");
+        var newRow = $("<tr class='item-rows'>");
         var cols = "";
 
         cols += '<td><input type="text" class="form-control itemids" rel="'+counter+'" id="item_id'+ counter + '"/></td>';
         cols += '<td><input type="text" class="form-control" readonly  id="product_des'+ counter + '"/></td>';
-        cols += '<td><input type="text" class="form-control" readonly id="item_cost'+ counter + '"/></td>';
-        cols += '<td><input class="form-control qty" qel="'+counter+'"  id="item_qty'+ counter + '"/></td>';
+        cols += '<td><input type="text" class="form-control itemcost" readonly id="item_cost'+ counter + '"/></td>';
+        cols += '<td><input class="form-control qty qualitys" qel="'+counter+'"  id="item_qty'+ counter + '"/></td>';
         cols += '<td><input class="form-control" readonly id="item_price'+ counter + '"/></td>'
         cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
         newRow.append(cols);
@@ -330,6 +319,9 @@
          $("#item_price"+id).val(total)
     });
     
+
+
+
 
 
 });

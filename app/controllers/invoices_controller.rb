@@ -99,71 +99,62 @@ class InvoicesController < ApplicationController
 
 
        custid =  params[:custid]
-       itemid_1 = params[:item_id1]
-       itemid_2 = params[:item_id2]
-       itemid_3 = params[:item_id3]
-       itemid_4 = params[:item_id4]
-       item1_cost = params[:item1_cost]
-       item2_cost = params[:item2_cost]
-       item3_cost = params[:item3_cost]
-       item4_cost =  params[:item4_cost]
-       item1_qty =  params[:item1_qty]
-       item2_qty =  params[:item2_qty]
-       item3_qty =  params[:item3_qty]
-       item4_qty =  params[:item4_qty]
-
+       itemArr = params[:item_arr]
        subtotal = params[:subtotal]
        input_tax  = params[:input_tax]
        input_discount  = params[:input_discount]
        invoice_total  = params[:invoice_total]
        input_advance = params[:input_advance]
 
-       itemArr = [itemid_1,itemid_2,itemid_3,itemid_4]
-       byebug
+       
 
-      if custid.present?
-         nord = Order.new 
-         nord.delivery_date = 10.days.from_now.to_s
-         nord.subtotal  = subtotal
-         nord.tax_amt  = input_tax
-         nord.discount_amt  = input_discount
-         nord.total_amt  = invoice_total
-         nord.advance_amt = input_advance
-         nord.payment_mode = "Cash"
-         nord.customer_id = custid
-         nord.store_id = current_user.store_id
-         nord.save
-         if nord.present?
-            itemArr.each_with_index do  | inx,index |
-                if inx.present?
-                   or_de = OrderDetail.new
-                   if index == 0
-                    or_de.item_id = itemid_1
-                    or_de.quantity = item1_qty
-                    or_de.price  = item1_cost
-                    update_procust(itemid_1,item1_qty)
-                   elsif index == 1
-                    or_de.item_id = itemid_2
-                    or_de.quantity = item2_qty
-                    or_de.price  = item2_cost
-                    update_procust(itemid_2,item2_qty)
-                   elsif index == 2
-                    or_de.item_id = itemid_3
-                    or_de.quantity = item3_qty
-                    or_de.price  = item3_cost
-                    update_procust(itemid_2,item2_qty)
-                   elsif index == 3
-                    or_de.item_id = itemid_4
-                    or_de.quantity = item4_qty
-                    or_de.price  = item4_cost
-                    update_procust(itemid_4,item3_qty)
-                   end
-                   or_de.order_id = nord.id
-                   or_de.save
-                end
-            end
-         end
-      end
+       itemArr.each do |item|
+        byebug
+       end
+
+      # if custid.present?
+      #    nord = Order.new 
+      #    nord.delivery_date = 10.days.from_now.to_s
+      #    nord.subtotal  = subtotal
+      #    nord.tax_amt  = input_tax
+      #    nord.discount_amt  = input_discount
+      #    nord.total_amt  = invoice_total
+      #    nord.advance_amt = input_advance
+      #    nord.payment_mode = "Cash"
+      #    nord.customer_id = custid
+      #    nord.store_id = current_user.store_id
+      #    nord.save
+      #    if nord.present?
+      #       itemArr.each_with_index do  | inx,index |
+      #           if inx.present?
+      #              or_de = OrderDetail.new
+      #              if index == 0
+      #               or_de.item_id = itemid_1
+      #               or_de.quantity = item1_qty
+      #               or_de.price  = item1_cost
+      #               update_procust(itemid_1,item1_qty)
+      #              elsif index == 1
+      #               or_de.item_id = itemid_2
+      #               or_de.quantity = item2_qty
+      #               or_de.price  = item2_cost
+      #               update_procust(itemid_2,item2_qty)
+      #              elsif index == 2
+      #               or_de.item_id = itemid_3
+      #               or_de.quantity = item3_qty
+      #               or_de.price  = item3_cost
+      #               update_procust(itemid_2,item2_qty)
+      #              elsif index == 3
+      #               or_de.item_id = itemid_4
+      #               or_de.quantity = item4_qty
+      #               or_de.price  = item4_cost
+      #               update_procust(itemid_4,item3_qty)
+      #              end
+      #              or_de.order_id = nord.id
+      #              or_de.save
+      #           end
+      #       end
+      #    end
+      # end
 
 
       render :json => {status: "success"}.to_json

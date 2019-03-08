@@ -78,16 +78,16 @@
           </thead>
       
           <tbody>
-            <tr class="item-row">
+            <!-- <tr class="item-row">
               <td><input class="form-control item_name" id="item_id1" value="" /></td>
               <td><input class="form-control item_desc" id="product_des1" value=""  readonly /></td>
               <td><input class="form-control cost" id="item1_cost" value="" readonly/></td>
               <td><input class="form-control qty" id="item1_qty" value="" /></td>
               <td class="price_td"><span class="price" id="item_price1"></span><span class="subtotal_currency"></span></td>
               <td class="delete_td"><a class="delete" href="javascript:;" title="Remove row"><span class="btn btn-danger">x</span></a></td>
-            </tr>
+            </tr> -->
           
-            <tr class="item-row">
+            <!-- <tr class="item-row">
               <td><input class="form-control item_name" id="item_id2" value="" /></td>
               <td><input class="form-control item_desc" id="product_des2" value=""  readonly/></td>
               <td><input class="form-control cost" id="item2_cost" value="" readonly/></td>
@@ -110,12 +110,21 @@
               <td><input class="form-control qty" id="item4_qty" value="" /></td>
               <td class="price_td"><span class="price"></span><span class="subtotal_currency"></span></td>
               <td class="delete_td"><a class="delete" href="javascript:;" title="Remove row"><span class="btn btn-danger">x</span></a></td>
-            </tr>
+            </tr> -->
           
            <!--  <tr id="hiderow">
               <td colspan="6"><a id="addrow" class="btn btn-success btn-sm" href="javascript:;" title="Add a row"><span class="ti-plus"></span>  Add a row</a></td>
             </tr> -->
           </tbody>
+          <tfoot>
+        <tr>
+            <td colspan="5" style="text-align: left;">
+                <input type="button" class="btn btn-lg btn-block " id="addrow" value="Add Row" />
+            </td>
+        </tr>
+        <tr>
+        </tr>
+    </tfoot>
         </table>
       </div>
     </div>
@@ -215,70 +224,6 @@
           });
      });
 
-     $("#item_id1").on("input",function() {
-          var id = this.value ;
-         // alert(cust_id);
-            $.ajax({
-            url: "get_item_product",
-            method: "GET",  
-            data: {id: id, item: '1' },
-            error: function (xhr, status, error) {
-              console.error('AJAX Error: ' + status + error);
-            },
-            success: function (data) {
-              // alert(JSON.stringify(data.frame.id));
-               console.log(JSON.stringify(data));
-            }
-          });
-     });
-     $("#item_id2").on("input",function() {
-          var id = this.value ;
-         // alert(cust_id);
-            $.ajax({
-            url: "get_item_product",
-            method: "GET",  
-            data: {id: id,item: '2'},
-            error: function (xhr, status, error) {
-              console.error('AJAX Error: ' + status + error);
-            },
-            success: function (data) {
-              // alert(JSON.stringify(data.frame.id));
-               console.log(JSON.stringify(data));
-            }
-          });
-     });
-     $("#item_id3").on("input",function() {
-          var id = this.value ;
-         // alert(cust_id);
-            $.ajax({
-            url: "get_item_product",
-            method: "GET",  
-            data: {id: id,item: '3'},
-            error: function (xhr, status, error) {
-              console.error('AJAX Error: ' + status + error);
-            },
-            success: function (data) {
-              // alert(JSON.stringify(data.frame.id));
-               console.log(JSON.stringify(data));
-            }
-          });
-     });
-     $("#item_id4").on("input",function() {
-          var id = this.value ;
-         // alert(cust_id);
-            $.ajax({
-            url: "get_item_product",
-            method: "GET",  
-            data: {id: id,item: '4'},
-            error: function (xhr, status, error) {
-              console.error('AJAX Error: ' + status + error);
-            },
-            success: function (data) {
-              // alert(JSON.stringify(data.frame.id));
-               console.log(JSON.stringify(data));
-            }
-          });
-     });
 
     $("#submit_invoice").click(function(){
       var item1 = $('#item_id1').val();
@@ -336,5 +281,56 @@
           });
 
       });
+
+    var counter = 1;
+
+
+    $("#addrow").on("click", function () {
+        var newRow = $("<tr>");
+        var cols = "";
+
+        cols += '<td><input type="text" class="form-control itemids" rel="'+counter+'" id="item_id'+ counter + '"/></td>';
+        cols += '<td><input type="text" class="form-control" readonly  id="product_des'+ counter + '"/></td>';
+        cols += '<td><input type="text" class="form-control" readonly id="item_cost'+ counter + '"/></td>';
+        cols += '<td><input class="form-control qty" qel="'+counter+'"  id="item_qty'+ counter + '"/></td>';
+        cols += '<td><input class="form-control" readonly id="item_price'+ counter + '"/></td>'
+        cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
+        newRow.append(cols);
+        $("table#items").append(newRow);
+        counter++;
+    });
+    $("table#items").on("click", ".ibtnDel", function (event) {
+        $(this).closest("tr").remove();       
+        counter -= 1
+    });
+
+    $("table#items").on("input", ".itemids", function (event) {
+          var item = this.value ;
+          var id = $(this).attr('rel')
+            $.ajax({
+            url: "get_item_product",
+            method: "GET",  
+            data: {id: item, item: '1' },
+            error: function (xhr, status, error) {
+              console.error('AJAX Error: ' + status + error);
+            },
+            success: function (data) {
+              console.log(data.product_desc)
+              $("#product_des"+id).val(data.product_desc)
+              $("#item_cost"+id).val(data.unit_price)
+            }
+          });
+     });
+
+    $("table#items").on("input", ".qty", function (event) {
+         var id =  $(this).attr('qel')
+         var qty = $("#item_qty"+id).val()
+         var unitpric = $("#item_cost"+id).val()
+         var total  = parseInt(unitpric) * parseInt(qty)
+         $("#item_price"+id).val(total)
+    });
+    
+
+
 });
   </script>

@@ -64,9 +64,8 @@ class InvoicesController < ApplicationController
     else  
     @erorMsg = "Customer Not Found."  
     end
-    respond_to do |format|
-       format.js { }
-     end
+    render :json => {:product_desc => @product_desc, :unit_price=> @unit_price
+                    }.to_json
   end
 
   def get_cust_data

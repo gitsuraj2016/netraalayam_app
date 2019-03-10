@@ -38,8 +38,10 @@ Rails.application.routes.draw do
   get 'report/csv'
   get 'report/excel'
 
+  get 'invoices/get_orderitemdata'
 
 
+  resources :orders
 
   resources :invoices, except: [:destroy] do
     collection do

@@ -2,71 +2,47 @@
   <div class="col-md-12">
     <h3 class="page-header">
       Netraalayam
-      <small class="pull-right">Date: <%= @curdate %><span class="invoice_header_date"></span></small>
+      <small class="pull-right">Date - <span class="invoice_header_date"></span></small>
     </h3>
   </div><!-- /.col -->
 </div>
                 <!-- info row -->
 <div class="row invoice-info">
   <div class="col-md-6 invoice-col">
-    Customer Info
+    <strong> Customer Info</strong>
     <address>
-      <div id= "modal_1" class="bold"></div>
-      <div id= "modal_2"></div>
-      <div id= "modal_3"></div>
-      <div id= "modal_4"></div>
+      <div id= "modal_1" class="bold">
+        <span id="customer_name">Bharath</span>
+      </div>
+      <div id= "modal_2"><span id="customer_id">1</span></div>
+      <div id= "modal_3"><span id="customer_phone">9980772322</span></div>
+      <div id= "modal_4"><span id="customer_gmail">test@gmail.c\om</span></div>
 
     </address>
   </div><!-- /.col -->
 
   <div class="col-md-6 invoice-col">
-    Company Info
+      <strong> Customer Info</strong>
     <address>
-      <div id= "modal_5"></div>
-      <div id= "modal_6"></div>
-      <div id= "modal_7"></div>
-      <div id= "modal_8"></div>
+      <div id= "modal_5"><span id="customer_gender">Male</span></div>
+      <div id= "modal_6"><span id="customer_age">age</span></div>
+      <div id= "modal_7"><span id="customer_address">address</span></div>
+      <div id= "modal_8"><span id="customer_pro">profession</span></div>
     </address>
   </div><!-- /.col -->
 
-  <div class="col-md-6 invoice-col" style="margin-left: 50%">
-    <form class="form-horizontal">
-      <div class="form-group">
-        <div class="col-md-8"><label>Invoice # </label> <span id="modal_invoice_number"></span></div>
-        <!-- <div class="col-md-8"><p id="modal_invoice_number" class="pull-right"></p></div> -->
-      </div>
-                    
-      <!-- <div class="col-md-12"></div> -->
-
-      <!-- <div class="form-group">
-        <div class="col-md-4"><label>Date</label></div>
-        <div class="col-xs-8"><span class="invoice_header_date pull-right"></span></div>
-      </div> -->
-                    
-      <!-- <div class="col-md-12"></div> -->
-
-      <div class="form-group">
-        <div class="col-md-8 invoice_space"><label>Amount due:- </label><span class="due" style="margin-left: 10px;">875.00</span></div>
-        <!-- <div class="col-xs-7 invoice_space bold" style="text-align:right"><span class="due">875.00</span><span class="subtotal_currency"></span></div> -->
-      </div>
-    </form>
-  </div><!-- /.col -->
+  <div class="col-md-6 nvoice-col">
+        <div><strong>Invoice - </strong> <span id="modal_invoice_number"></span></div>
+  </div>                  
+  <div class="col-md-6 nvoice-col">
+        <div><strong>Delivery Date - </strong> <span id="delivery_date"></span></div>
+  </div>
 </div><!-- /.row -->
 
 <div class="row">
 	<div class="col-md-12">
     <hr>
 		<table class="table table-bordered" id="modal_items">
-		  <thead>
-		    <th class="item-name">Item</th>
-		    <th class="description">Description</th>
-		    <th class="unit">Unit Cost</th>
-	      <th class="quantity">Quantity</th>
-	      <th class="units">Price</th>
-		  </thead>
-		  
-		  <tbody id="modal_tbody">
-		  </tbody>
 		</table>
 
 	</div>
@@ -88,13 +64,18 @@
           <th>Discount:</th>
           <td><span id="modal_99"></span><span class="subtotal_currency"></span></td>
         </tr>
+        
+        <tr>
+          <th>Total:</th>
+          <td class="balance"><span class="due" id="totals_amount"></span><span class="subtotal_currency"></span></td>
+        </tr>
         <tr>
           <th>Advance:</th>
           <td><span id="modal_89"></span><span class="subtotal_currency"></span></td>
         </tr>
         <tr>
-          <th>Total:</th>
-          <td class="balance"><span class="due">875.00</span><span class="subtotal_currency"></span></td>
+          <th>Balance Amount:</th>
+          <td><span id="modal_balance"></span><span class="subtotal_currency"></span></td>
         </tr>
       </table>
     </div>
@@ -103,5 +84,5 @@
 
 <div id="modal_terms">
 	<h5>Terms</h5>
-	<span id="modal_10"></span>
+	<span id="modal_10">Netraalayam Payment terms: net 30. Interest accrued at 1.5% per month thereafter.</span>
 </div>

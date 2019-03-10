@@ -16,6 +16,8 @@ class InvoicesController < ApplicationController
 
     def edit
      @custs = Customer.all
+     d = DateTime.now
+     @curdate = d.strftime("%d/%m/%Y %H:%M")
      @invoice = Order.where(:id=>params[:id]).last
   end
 
@@ -73,6 +75,32 @@ class InvoicesController < ApplicationController
     render :json => {:product_desc => product_desc, :unit_price=> unit_price}.to_json
   end
 
+  def get_orderitemdata
+    order = Order.where(:id=>params[:orderid]).last
+    customer = Customer.where(:id=>order.customer_id).last
+    orderitems = []
+    i = 1
+    order.order_details.each do |orderdetail|
+      orderdetails = {}
+      inverntory_item = InventoryItem.where(:id=>orderdetail.item_id).last
+      if inverntory_item.inventory_type == "frame"
+        orderdetails['productname'] = inverntory_item.frame.product.description
+      elsif inverntory_item.inventory_type == "lense"
+        orderdetails['productname'] = inverntory_item.len.product.description
+      else
+        orderdetails['productname'] = inverntory_item.sunglasse.product.description
+      end 
+      orderdetails['count'] = i
+      orderdetails['itemid'] = orderdetail.item_id
+      orderdetails['unitprice'] = orderdetail.price
+      orderdetails['quantity'] = orderdetail.quantity
+      orderdetails['cosrprice'] = orderdetail.price * orderdetail.quantity
+      orderitems.push(orderdetails)
+      i += 1
+    end
+    render :json => {:orderitems => orderitems, :order => order, :customer => customer }.to_json
+  end
+
   def get_cust_data
 
     cust = Customer.where(:id=> params[:custid]).first
@@ -110,8 +138,17 @@ class InvoicesController < ApplicationController
        input_advance = params[:input_advance]
        balance = params[:balance]
       if custid.present?
+        if params[:orderid].present?
+          nord = Order.where(:id=>params[:orderid]).last
+          nord.order_details.destroy_all
+        else  
          nord = Order.new 
-         nord.delivery_date = 10.days.from_now.to_s
+        end 
+        if params[:invoice_date].present?
+          nord.delivery_date = params[:invoice_date]
+        else  
+          nord.delivery_date = 10.days.from_now.to_s
+        end
          nord.subtotal  = subtotal
          nord.tax_amt  = input_tax
          nord.discount_amt  = input_discount

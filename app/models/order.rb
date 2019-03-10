@@ -2,7 +2,7 @@ require 'csv'
 
 class Order < ApplicationRecord
 	belongs_to :store
-
+  has_many :order_details
 
 	def self.to_csv
     attributes = %w{id store total_amt delivery_date }

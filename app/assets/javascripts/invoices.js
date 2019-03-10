@@ -19,7 +19,13 @@ function update_balance() {
 	$('.totalamount').html(total);
 }
 function update_balance_discount() {
-	var total = Number($('#subtotal').html()) - Number($('#99').val());
+	var tax = $("#9").val()
+	if(tax == ''){
+		var total = Number($('#subtotal').html()) - Number($('#99').val());
+	}
+	else{
+		var total = (Number($('#subtotal').html()) + Number($('#9').val()))  -   Number($('#99').val());
+	}
 	total = total.toFixed(2);
 
 	$('.totalamount').html(total);
@@ -29,7 +35,7 @@ function update_balance_advance() {
 	var total = Number($('#invoice_total').html()) - Number($('#89').val());
 	total = total.toFixed(2);
 
-	$('.advamt').html(total);
+	$('.advamt').val(total);
 }
 
 function update_price() {

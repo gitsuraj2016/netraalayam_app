@@ -4,7 +4,7 @@ class FramesController < ApplicationController
   # GET /frames
   # GET /frames.json
   def index
-    @frames = Frame.all
+    @frames = Frame.where(:store_id=>current_user.store_id)
   end
 
   # GET /frames/1

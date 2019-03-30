@@ -9,9 +9,9 @@ require 'barby/outputter/png_outputter'
 
 class InventoryController < ApplicationController
   def index
-  	   @frame = Frame.all
-  	   @len = Len.all
-       @sunglasse = Sunglasse.all
+  	   @frame = Frame.where(:store_id=>current_user.store_id)
+  	   @len = Len.where(:store_id=>current_user.store_id)
+       @sunglasse = Sunglasse.where(:store_id=>current_user.store_id)
   end
 
   def barcode_generate

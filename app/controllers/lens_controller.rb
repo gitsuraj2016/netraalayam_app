@@ -4,7 +4,7 @@ class LensController < ApplicationController
   # GET /lens
   # GET /lens.json
   def index
-    @lens = Len.all
+    @lens = Len.where(:store_id=>current_user.store_id)
   end
 
   # GET /lens/1

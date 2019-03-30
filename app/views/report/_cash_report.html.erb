@@ -5,18 +5,16 @@
   
   <table class="table table-bordered table-hover">
     <tr>
-       <th>Total No of Sales</th>
-      <th>Sunglasses</th>
-      <th>Eye Glasses</th>
-      <th>Sale Value</th>
-      <th>Sunglass Value</th>
-      <th>Eye Glass Value</th>
+      <th>Total Collection</th>
+      <th>Card Value</th>
+      <th>Cash Value</th>
+      <th>Sale Collection</th>
+      <th>Handover Collection</th>
     </tr>
     <% @orders.each do |order| %>
     <tr>
       <td><%= order.id %></td>
       <td><%= order.store.name %></td>
-      <td><%= order.total_amt %></td>
       <td><%= order.total_amt %></td>
       <td><%= order.total_amt %></td>
       <td><%= order.delivery_date %></td>

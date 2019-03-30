@@ -13,13 +13,7 @@
 
         <ol class="breadcrumb">
           <li class="active">
-            <select class="form-control custinvoice" id="select_cust_id">
-          <option value="0">Select Store</option>
-          <%= @custs.each do | cust | %>
-             <option value="<%= cust.id %>"><%= cust.name %></option>
-          <% end %>
-          </select>
-            
+            <%= select_tag "store_type", options_for_select(@custs.collect{ |u| [u.name, u.id]}, :selected=>@storeid), {:class =>"form-control",:id =>"select_store_id"} %>            
           </li>
         </ol>
 
@@ -92,6 +86,24 @@
       $.widget.bridge('uibutton', $.ui.button);
     </script>
     <script>
+      // $( docum ).ready(function() {
+      $('#select_store_id').on('change', function() {
+         var store_id = this.value ;
+            $.ajax({
+            url: "home/store_storeid",
+            method: "GET",  
+            data: {store_id: store_id },
+            error: function (xhr, status, error) {
+              console.error('AJAX Error: ' + status + error);
+            },
+            success: function (data) {
+              alert("Save successfully");
+              // alert(JSON.stringify(data.frame.id));
+              // console.log(response);
+            }
+          });
+     });
+    
       $(function () {
         $("#example1").DataTable();
         $('#example2').DataTable({

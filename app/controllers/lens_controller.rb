@@ -4,7 +4,12 @@ class LensController < ApplicationController
   # GET /lens
   # GET /lens.json
   def index
-    @lens = Len.where(:store_id=>current_user.store_id)
+    if current_user.role.name == "admin"
+      @lens = Len.all
+    else
+      @lens = Len.where(:store_id=>current_user.store_id)
+    end
+    
   end
 
   # GET /lens/1

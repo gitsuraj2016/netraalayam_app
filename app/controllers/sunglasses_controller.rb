@@ -4,7 +4,12 @@ class SunglassesController < ApplicationController
   # GET /frames
   # GET /frames.json
   def index
-    @sunglasses = Sunglasse.where(:store_id=>current_user.store_id)
+    if current_user.role.name == "admin"
+      @sunglasses = Sunglasse.all
+    else
+     @sunglasses = Sunglasse.where(:store_id=>current_user.store_id)
+    end
+    
   end
 
   # GET /frames/1

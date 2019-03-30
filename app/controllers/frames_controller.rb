@@ -4,7 +4,12 @@ class FramesController < ApplicationController
   # GET /frames
   # GET /frames.json
   def index
-    @frames = Frame.where(:store_id=>current_user.store_id)
+    if current_user.role.name == "admin"
+      @frames = Frame.all
+    else
+      @frames = Frame.where(:store_id=>current_user.store_id)
+    end
+    
   end
 
   # GET /frames/1

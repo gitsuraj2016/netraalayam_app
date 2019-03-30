@@ -137,9 +137,13 @@ class InvoicesController < ApplicationController
        invoice_total  = params[:invoice_total]
        input_advance = params[:input_advance]
        balance = params[:balance]
+       payment_mode = params[:paymentmode]
       if custid.present?
         if params[:orderid].present?
           nord = Order.where(:id=>params[:orderid]).last
+          nord.order_details.each do |item|
+            update_procust(item.item_id,item.quantity, 'added')
+          end
           nord.order_details.destroy_all
         else  
          nord = Order.new 
@@ -154,12 +158,13 @@ class InvoicesController < ApplicationController
          nord.discount_amt  = input_discount
          nord.total_amt  = invoice_total
          nord.advance_amt = input_advance
-         nord.payment_mode = "Cash"
+         nord.payment_mode = payment_mode
          nord.customer_id = custid
          nord.balance_amount = balance
          nord.store_id = current_user.store_id
          nord.save
          if nord.present?
+          if itemArr.present?
             itemArr.each do |item|
               or_de = OrderDetail.new
               or_de.item_id = item[1][:itemid]
@@ -167,18 +172,51 @@ class InvoicesController < ApplicationController
               or_de.price  = item[1][:cost]
               or_de.order_id = nord.id
               or_de.save
-              update_procust(item[1][:itemid],item[1][:qty])
+              update_procust(item[1][:itemid],item[1][:qty], 'remove')
            end
+          end 
          end
       end
       render :json => {status: "success"}.to_json
   end
 
-  def update_procust(pid, p_qnt)
+  def update_procust(pid, p_qnt, type)
       frm = InventoryItem.where(:id => pid).first
       if frm.present?
+          if frm.inventory_type == "frame"
+            frameitem = frm.frame
+            fc_qny = frameitem.quantity
+            if(type == "remove")
+              frameitem.quantity = fc_qny.to_i - p_qnt.to_i
+            else
+              frameitem.quantity = fc_qny.to_i + p_qnt.to_i
+            end
+            frameitem.save
+          elsif frm.inventory_type == "lense"
+            lenitem = frm.len
+            fc_qny = lenitem.quantity
+            if(type == "remove")
+              lenitem.quantity = fc_qny.to_i - p_qnt.to_i
+            else
+              lenitem.quantity = fc_qny.to_i + p_qnt.to_i
+            end
+            lenitem.save
+          else
+            sunglasseitem = frm.sunglasse
+            fc_qny = sunglasseitem.quantity
+            if(type == "remove")
+              sunglasseitem.quantity = fc_qny.to_i - p_qnt.to_i
+            else
+              sunglasseitem.quantity = fc_qny.to_i + p_qnt.to_i
+            end
+            sunglasseitem.save
+          end
           fc_qny = frm.quantity
-          frm.quantity = fc_qny.to_i - p_qnt.to_i
+          if(type == "remove")
+            frm.quantity = fc_qny.to_i - p_qnt.to_i
+          else
+            frm.quantity = fc_qny.to_i + p_qnt.to_i
+          end
           frm.save
       end
   end

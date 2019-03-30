@@ -58,6 +58,8 @@ class SunglassesController < ApplicationController
   def update
     respond_to do |format|
       if @sunglasse.update(sunglasse_params)
+        inventoryitem = InventoryItem.where(:sunglasse_id=>@sunglasse.id).last
+        inventoryitem.update_attribute(:quantity, @sunglasse.quantity)
         format.html { redirect_to({:action => :index}, {:notice => 'Frame was successfully updated.'}) }
         # format.html { redirect_to @frame, notice: 'Frame was successfully updated.' }
         format.json { render :show, status: :ok, location: @sunglasse }
@@ -71,6 +73,8 @@ class SunglassesController < ApplicationController
   # DELETE /frames/1
   # DELETE /frames/1.json
   def destroy
+    inventoryitem = InventoryItem.where(:sunglasse_id=>@sunglasse.id).last
+    inventoryitem.destroy
     @sunglasse.destroy
     respond_to do |format|
       format.html { redirect_to sunglasses_url, notice: 'Frame was successfully destroyed.' }

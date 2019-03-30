@@ -58,6 +58,8 @@ class FramesController < ApplicationController
   def update
     respond_to do |format|
       if @frame.update(frame_params)
+        inventoryitem = InventoryItem.where(:frame_id=>@frame.id).last
+        inventoryitem.update_attribute(:quantity, @frame.quantity)
         format.html { redirect_to({:action => :index}, {:notice => 'Frame was successfully updated.'}) }
         # format.html { redirect_to @frame, notice: 'Frame was successfully updated.' }
         format.json { render :show, status: :ok, location: @frame }
@@ -71,6 +73,8 @@ class FramesController < ApplicationController
   # DELETE /frames/1
   # DELETE /frames/1.json
   def destroy
+    inventoryitem = InventoryItem.where(:frame_id=>@frame.id).last
+    inventoryitem.destroy
     @frame.destroy
     respond_to do |format|
       format.html { redirect_to frames_url, notice: 'Frame was successfully destroyed.' }

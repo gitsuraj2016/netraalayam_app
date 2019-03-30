@@ -160,10 +160,10 @@
               <th>Payment Type</th>
               <td class="balance">
               <label class="btn btn-default">
-                    <input type="radio" id="q156" name="quality[25]" value="1" /> Cash
+                    <input type="radio" id="q156" name="quality[25]" value="cash" /> Cash
                 </label> 
                 <label class="btn btn-default">
-                    <input type="radio" id="q157" name="quality[25]" value="2" /> Card
+                    <input type="radio" id="q157" name="quality[25]" value="card" /> Card
                 </label> 
               </td>
               <%#=f.hidden_field :amount, id: "invoice_total1" %>
@@ -238,7 +238,8 @@
       var invoice_total = $('#invoice_total').text();
       var input_advance = $('.input_advance').val();
       var custid = $('.cid').val();
-      var balance = $(".advamt").text();
+      var balance = $("#balance_amt").val();
+      var paymentmode = $("input[name='quality[25]']:checked").val();
 
         $.ajax({
             url: "generate_cust_invoice",
@@ -251,7 +252,8 @@
                      input_discount: input_discount,
                      invoice_total: invoice_total,
                      input_advance: input_advance,
-                     balance: balance
+                     balance: balance,
+                     paymentmode: paymentmode
                   },
             error: function (xhr, status, error) {
               console.error('AJAX Error: ' + status + error);

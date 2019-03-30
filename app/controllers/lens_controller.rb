@@ -57,6 +57,8 @@ class LensController < ApplicationController
   def update
     respond_to do |format|
       if @len.update(len_params)
+        inventoryitem = InventoryItem.where(:len_id=>@len.id).last
+        inventoryitem.update_attribute(:quantity, @len.quantity)
         format.html { redirect_to({:action => :index}, {:notice => 'Lens was successfully updated.'}) }
         # format.html { redirect_to @len, notice: 'Len was successfully updated.' }
         format.json { render :show, status: :ok, location: @len }
@@ -70,6 +72,8 @@ class LensController < ApplicationController
   # DELETE /lens/1
   # DELETE /lens/1.json
   def destroy
+    inventoryitem = InventoryItem.where(:len_id=>@len.id).last
+    inventoryitem.destroy
     @len.destroy
     respond_to do |format|
       format.html { redirect_to lens_url, notice: 'Len was successfully destroyed.' }

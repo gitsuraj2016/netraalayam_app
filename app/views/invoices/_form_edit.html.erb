@@ -158,7 +158,7 @@
               <th>Payment Type</th>
               <td class="balance">
                 <%selected = ''%>
-                 <%if @invoice.payment_mode == 'Cash'%>
+                 <%if @invoice.payment_mode == 'cash'%>
                     <%selected1 = 'checked'%>
                     <%selected2 = ''%>
                  <%else%>
@@ -166,10 +166,10 @@
                     <%selected1 = ''%>
                  <%end%>
               <label class="btn btn-default">
-                    <input type="radio" id="q156" name="quality[25]" value="1" <%=selected1%>/> Cash
+                    <input type="radio" id="q156" name="quality[25]" value="cash" <%=selected1%>/> Cash
                 </label> 
                 <label class="btn btn-default">
-                    <input type="radio" id="q157" name="quality[25]" value="2" <%=selected2%>/> Card
+                    <input type="radio" id="q157" name="quality[25]" value="card" <%=selected2%>/> Card
                 </label> 
               </td>
               <%#=f.hidden_field :amount, id: "invoice_total1" %>
@@ -298,6 +298,7 @@
       var balance = $(".advamt").val();
       var orderid = $("#order_id").val();
       var invoice_date = $("#invoice_date").val();
+      var paymentmode = $("input[name='quality[25]']:checked").val();
         $.ajax({
             url: "/invoices/generate_cust_invoice",
             method: "POST",  
@@ -311,7 +312,8 @@
                      input_advance: input_advance,
                      balance: balance,
                      orderid: orderid,
-                     invoice_date: invoice_date
+                     invoice_date: invoice_date,
+                     paymentmode: paymentmode
                   },
             error: function (xhr, status, error) {
               console.error('AJAX Error: ' + status + error);

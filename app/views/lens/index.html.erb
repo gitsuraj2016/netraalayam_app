@@ -33,7 +33,7 @@
                     <th>Brand name</th>
                     <th>Lens type</th>
                     <th>Coatings1</th>
-                    <th>Coatings2</th>
+                    <!-- <th>Coatings2</th> -->
                     <!-- <th>Coatings3</th>
                     <th>Coatings4</th>
                     <th>Coatings5</th> -->
@@ -43,6 +43,7 @@
                     <th>Mrp</th>
                     <th>Nrp</th>
                     <th>Discount</th>
+                    <th>Quantity</th>
                     <th>Store</th>
                     
                     <th>
@@ -58,7 +59,7 @@
                     <td><%= len.brand_name %></td>
                     <td><%= len.lens_type %></td>
                     <td><%= len.coatings1 %></td>
-                    <td><%= len.coatings2 %></td>
+                    <!-- <td><%= len.coatings2 %></td> -->
                    <!--  <td><%= len.coatings3 %></td>
                     <td><%= len.coatings4 %></td>
                     <td><%= len.coatings5 %></td> -->
@@ -68,6 +69,7 @@
                     <td><%= len.MRP %></td>
                     <td><%= len.NRP %></td>
                     <td><%= len.discount %></td>
+                    <td><%= len.quantity %></td>
                     <td><%= len.store.name %></td>
 
                     <td><%= link_to "", edit_len_path(len), { class: "ion ion-edit"} %></td>

@@ -187,7 +187,7 @@
 
         <div class="field">
          <label>Store</label>
-          <%= form.select(:store_id, options_for_select(@stores.map{ |c| [c.name, c.id] },:selected => @frame.store_id),{},class: 'form-control') %>
+          <%= form.select(:store_id, options_for_select(@stores.map{ |c| [c.name, c.id] },:selected => @storeid),{},class: 'form-control') %>
         </div>
         <td>
           <div class="field">

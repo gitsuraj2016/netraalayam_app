@@ -19,6 +19,10 @@ class SunglassesController < ApplicationController
 
   # GET /frames/new
   def new
+    @storeid = 0
+    if session[:store_id].present?
+      @storeid = session[:store_id]
+    end
     @sunglasse = Sunglasse.new
     @stores = Store.all
     @products = Product.all
@@ -26,6 +30,10 @@ class SunglassesController < ApplicationController
 
   # GET /frames/1/edit
   def edit
+    @storeid = 0
+    if session[:store_id].present?
+      @storeid = session[:store_id]
+    end
      @stores = Store.all
      @products = Product.all
   end

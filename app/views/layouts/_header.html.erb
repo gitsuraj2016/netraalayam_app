@@ -95,18 +95,21 @@
           <span>Manage Customer</span>
         </a>
       </li>
-      <li>
-        <a href="<%= inventory_index_path %>">
-          <i class="fa fa-search"></i>
-          <span>Manage Inventory</span>
-        </a>
-      </li>
+      
        <li>
         <a href="<%= invoices_path %>">
           <i class="fa fa-calendar"></i>
           <span>Generate Invoices</span>
         </a>
       </li>
+      <% if current_user.role.name == "admin" %>
+      <li>
+        <a href="<%= inventory_index_path %>">
+          <i class="fa fa-search"></i>
+          <span>Manage Inventory</span>
+        </a>
+      </li>
+      
       <li>
         <a href="<%= products_path %>">
           <i class="fa fa-archive"></i>
@@ -125,8 +128,8 @@
           <span>Manage Store</span>
         </a>
       </li>
-      <% if current_user.role.name == "admin" %>
-      <% end %>
+      
+      
       <li>
         <a href=" <%= member_index_path %>">
           <i class="fa fa-plus"></i>
@@ -134,12 +137,14 @@
         </a>
       </li>
 
+
       <li>
         <a href="<%= roles_path %>">
           <i class="fa fa-user"></i>
           <span>Manage Role</span>
         </a>
       </li>
+      <% end %>
       <li>
       <a href="<%= report_index_path %>">
         <i class="fa fa-bar-chart"></i>

@@ -19,6 +19,10 @@ class LensController < ApplicationController
 
   # GET /lens/new
   def new
+    @storeid = 0
+    if session[:store_id].present?
+      @storeid = session[:store_id]
+    end
     @len = Len.new
     @stores = Store.all
     @products = Product.all
@@ -26,6 +30,10 @@ class LensController < ApplicationController
 
   # GET /lens/1/edit
   def edit
+    @storeid = 0
+    if session[:store_id].present?
+      @storeid = session[:store_id]
+    end
     @stores = Store.all
     @products = Product.all
   end
